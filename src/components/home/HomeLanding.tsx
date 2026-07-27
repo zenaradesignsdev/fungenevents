@@ -39,8 +39,8 @@ export function HomeLanding() {
           <Image
             src="/images/fungen-logo.svg"
             alt="FunGen Events and Experiences logo"
-            width={85}
-            height={78}
+            width={147}
+            height={162}
             priority
             className="h-12 w-auto sm:h-16"
           />
