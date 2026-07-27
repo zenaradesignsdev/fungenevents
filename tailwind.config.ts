@@ -53,6 +53,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--brand))',
           foreground: 'hsl(var(--brand-foreground))',
           muted: 'hsl(var(--brand-muted))',
+          dark: 'hsl(var(--brand-dark))',
         },
         gold: {
           DEFAULT: 'hsl(var(--gold))',
@@ -73,10 +74,27 @@ const config: Config = {
           '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--gold) / 0.35)' },
           '50%': { transform: 'scale(1.035)', boxShadow: '0 0 0 10px hsl(var(--gold) / 0)' },
         },
+        kenburns: {
+          from: { transform: 'scale(1.02)' },
+          to: { transform: 'scale(1.14)' },
+        },
+        marquee: {
+          from: { transform: 'translate3d(0,0,0)' },
+          to: { transform: 'translate3d(-50%,0,0)' },
+        },
+        'scroll-cue': {
+          '0%': { transform: 'scaleY(0)', transformOrigin: 'top' },
+          '45%': { transform: 'scaleY(1)', transformOrigin: 'top' },
+          '55%': { transform: 'scaleY(1)', transformOrigin: 'bottom' },
+          '100%': { transform: 'scaleY(0)', transformOrigin: 'bottom' },
+        },
       },
       animation: {
         shimmer: 'shimmer 3.5s linear infinite',
         breathe: 'breathe 2.8s ease-in-out infinite',
+        kenburns: 'kenburns 32s ease-in-out infinite alternate',
+        marquee: 'marquee 44s linear infinite',
+        'scroll-cue': 'scroll-cue 3.4s cubic-bezier(.32,.72,0,1) infinite',
       },
     },
   },

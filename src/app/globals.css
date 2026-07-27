@@ -30,6 +30,7 @@
     --brand: 216 41% 18%; /* Deep Navy #1B2A41 */
     --brand-foreground: 36 33% 97%; /* Warm White #FAF8F5 */
     --brand-muted: 216 30% 92%;
+    --brand-dark: 214 41% 13%; /* Deepest Navy #131E2E — footer & CTA bands */
 
     /* ─── Luxury Gold accent #C9A227 — used sparingly for CTAs/highlights ─── */
     --gold: 46 68% 47%;
@@ -50,6 +51,12 @@
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  /* Brand text selection */
+  ::selection {
+    background: hsl(var(--gold));
+    color: hsl(var(--brand-foreground));
   }
 
   /* Consistent focus ring across all interactive elements */

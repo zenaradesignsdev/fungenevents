@@ -8,16 +8,18 @@ import type { Metadata } from 'next'
 export const siteConfig = {
   name: 'FunGen Events and Experiences',
   description:
-    'FunGen Events and Experiences plans birthdays, weddings, anniversaries, social gatherings, entertainment, and nonprofit events. Full website coming soon.',
+    'FunGen Events & Experiences is a Toronto luxury event planning studio designing weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fungenevents.ca',
   ogImage: '/og-image.jpg',
   locale: 'en_CA',
 } as const
 
-// Real business contact details — email is still a placeholder (see HomeLanding.tsx).
+// Real business contact details — email is still a placeholder pending the client.
 export const businessInfo = {
   telephone: '+16479269787',
   telephoneDisplay: '(647) 926-9787',
+  // Placeholder — replace with FunGen's real inbox once provided.
+  email: 'hello@fungenevents.ca',
   address: {
     streetAddress: 'Unit 312/5, 2855 Markham Road',
     addressLocality: 'Toronto',
