@@ -81,7 +81,11 @@ export function HomeLanding() {
           variants={ANIMATION_VARIANTS.fadeIn}
           className="flex flex-row gap-2 sm:gap-3"
         >
-          <Button asChild>
+          <Button
+            asChild
+            size="lg"
+            className="px-8 text-base sm:px-10 sm:text-lg [&_svg]:size-5"
+          >
             <a href={`mailto:${CONTACT_EMAIL}`}>
               <Mail aria-hidden="true" />
               Email Us
@@ -89,8 +93,9 @@ export function HomeLanding() {
           </Button>
           <Button
             asChild
+            size="lg"
             variant="gold"
-            className="animate-breathe"
+            className="animate-breathe px-8 text-base sm:px-10 sm:text-lg [&_svg]:size-5"
           >
             <a href={`tel:${CONTACT_PHONE_HREF}`}>
               <Phone aria-hidden="true" />
