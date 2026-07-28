@@ -10,7 +10,7 @@
 - **Website**: fungenevents.ca — real domain, confirmed 2026-07-27
 - **Phone**: (647) 926-9787 — real, confirmed 2026-07-27
 - **Address**: Unit 312/5, 2855 Markham Road, Toronto, ON M1X 0C3 — real, confirmed 2026-07-27
-- **Email**: still a placeholder (`hello@fungenevents.ca` in `HomeLanding.tsx`) — replace once the client provides a real one
+- **Email**: fungeneventsinc@gmail.com — real, confirmed 2026-07-28
 
 ---
 
@@ -20,9 +20,10 @@ This repo currently ships a **single placeholder landing page** only (`/`). The 
 needed something to hand to prospective customers now while the full multi-page site
 design is still being finalized in a separate Claude design project. The contact page,
 contact form, and Resend API route from the boilerplate were removed for this phase —
-the landing page uses direct `mailto:` and `tel:` links with placeholder contact details
-instead. Re-add `src/app/contact/`, `src/app/api/contact/`, and the Resend env vars
-(commented out in `.env.local.example`) when the full site is built.
+the landing page uses direct `mailto:` and `tel:` links with real contact details
+(email, phone, address) instead. Re-add `src/app/contact/`, `src/app/api/contact/`,
+and the Resend env vars (commented out in `.env.local.example`) when the full site
+is built.
 
 ---
 
@@ -76,8 +77,8 @@ is a temporary placeholder page. Revisit when the full site design is finalized.
 ## Content & Copy
 
 - **Tone**: Warm, professional, celebratory
-- Phone and address on the landing page (`src/lib/metadata.ts` → `businessInfo`) are
-  real. `CONTACT_EMAIL` in `src/components/home/HomeLanding.tsx` is still a placeholder.
+- Phone and address (`src/lib/metadata.ts` → `businessInfo`) and email
+  (`CONTACT_EMAIL` in `src/components/home/HomeLanding.tsx`) are all real now.
 - Real phone/address are also emitted as `LocalBusiness` JSON-LD in `src/app/page.tsx`
   for local SEO.
 

@@ -8,8 +8,7 @@ import { CategoryCarousel } from '@/components/home/CategoryCarousel'
 import { ANIMATION_VARIANTS } from '@/lib/animations'
 import { businessInfo } from '@/lib/metadata'
 
-// Placeholder — replace with FunGen's real email once provided.
-const CONTACT_EMAIL = 'hello@fungenevents.ca'
+const CONTACT_EMAIL = 'fungeneventsinc@gmail.com'
 const CONTACT_PHONE_DISPLAY = businessInfo.telephoneDisplay
 const CONTACT_PHONE_HREF = businessInfo.telephone
 const BUSINESS_ADDRESS = `${businessInfo.address.streetAddress}, ${businessInfo.address.addressLocality} ${businessInfo.address.addressRegion} ${businessInfo.address.postalCode}`
