@@ -18,6 +18,22 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden bg-[#101B2B] px-5 pt-[clamp(124px,16vh,180px)] sm:px-8 lg:px-16">
+      {/* Background photograph, sat well behind the navy scrim. Quality is
+          deliberately low — it never reads at full contrast. */}
+      <Image
+        src="/images/gallery/candlelit-tablescape.jpg"
+        alt=""
+        fill
+        priority
+        quality={55}
+        sizes="100vw"
+        className="object-cover"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(16,27,43,.92),rgba(16,27,43,.89)_45%,rgba(11,19,31,.94))]"
+      />
+
       {/* Decorative glow + scrims */}
       <span
         aria-hidden="true"
@@ -32,24 +48,7 @@ export function Hero() {
         <div className="grid grid-cols-1 items-end gap-[clamp(32px,4.5vw,84px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           {/* Copy column */}
           <div className="min-w-0 lg:pl-[clamp(0px,3vw,54px)]">
-            <m.div
-              initial={reduce ? false : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: EASE }}
-              className="flex items-center gap-3.5"
-            >
-              <m.span
-                initial={reduce ? false : { scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1.1, delay: 0.1, ease: EASE }}
-                className="block h-px w-[clamp(28px,4vw,64px)] origin-left bg-gold"
-              />
-              <span className="font-sans text-[9.5px] font-medium uppercase tracking-[0.34em] text-brand-foreground/60">
-                Planning &amp; production, in-house
-              </span>
-            </m.div>
-
-            <h1 className="mt-[clamp(22px,2.6vw,38px)] max-w-[15ch] font-display text-[clamp(38px,4.9vw,82px)] font-normal leading-[0.98] tracking-[-0.02em] text-brand-foreground">
+            <h1 className="max-w-[15ch] font-display text-[clamp(38px,4.9vw,82px)] font-normal leading-[0.98] tracking-[-0.02em] text-brand-foreground">
               {HEADLINE_LINES.map((line, i) => (
                 <span key={line.text} className="my-[-0.14em] block overflow-hidden py-[0.14em]">
                   <m.span
@@ -160,7 +159,7 @@ export function Hero() {
           {HERO_META.map((meta) => (
             <span
               key={meta.label}
-              className="flex flex-col gap-[7px] border-brand-foreground/10 py-[clamp(18px,2vw,26px)] pr-[clamp(18px,2vw,30px)] min-[560px]:border-r"
+              className="flex flex-col gap-[7px] border-brand-foreground/10 py-[clamp(18px,2vw,26px)] pl-[clamp(16px,3vw,54px)] pr-[clamp(18px,2vw,30px)] min-[560px]:border-r"
             >
               <span className="font-sans text-[8.5px] uppercase tracking-[0.32em] text-gold">{meta.label}</span>
               <span className="font-sans text-[12.5px] font-light leading-[1.7] text-brand-foreground/75">
