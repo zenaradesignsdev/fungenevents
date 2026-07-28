@@ -106,8 +106,17 @@ keep the build warning-free.
 
 - `public/images/gallery/` holds 22 event photos (downloaded locally from the design's
   stock sources so they serve same-origin under the `img-src 'self'` CSP).
-- `public/images/fungen-mark-gold.svg` / `fungen-mark-cream.svg` — nav/footer logo marks.
-- `public/og-image.jpg` (1200×630) — brand OG card, generated with sharp.
+- Logo: `public/images/fungen-logo.svg` is the client's master mark (fungen-logo-v2, the
+  gradient "G" monogram). Three derived marks share its path on a tight
+  `8.9 8.9 129.9 143.8` viewBox — aspect ratio ≈ **0.903 (portrait)**:
+  - `fungen-mark-gold.svg` — the logo's own bright gradient. **Dark backgrounds only.**
+  - `fungen-mark-gold-deep.svg` — same gradient shifted darker. **Light backgrounds** —
+    the bright version's highlight stop disappears against `#FAF8F5`.
+  - `fungen-mark-cream.svg` — flat `#FAF8F5`, for the nav over the dark hero.
+- `public/og-image.jpg` (1200×630) — brand OG card (mark + wordmark), generated with sharp.
+- Favicons / app icons (`favicon-16/32`, `apple-touch-icon`, `android-chrome-192/512`,
+  `src/app/favicon.ico`) are the mark on a navy tile. The 16/32px ones use a flat
+  `#E6C96D` fill — the gradient's dark stops turn to mud at hairline stroke widths.
 - SVG marks require `dangerouslyAllowSVG` in `next.config.mjs` (already enabled, scoped
   to trusted local assets only — never enable for user-uploaded SVGs).
 - Use `<Image />` from `@/components/ui/image` for all rendered images — never raw `<img>`
