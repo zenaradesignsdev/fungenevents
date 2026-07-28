@@ -29,7 +29,7 @@ export function Testimonials() {
       </span>
       <div className="relative mx-auto max-w-[1180px]">
         <span className="mb-[clamp(30px,4vw,54px)] block font-sans text-[10px] uppercase tracking-[0.34em] text-brand-foreground/50">
-          04 — In their words
+          In their words
         </span>
 
         <div className="min-h-[clamp(180px,20vw,300px)]">

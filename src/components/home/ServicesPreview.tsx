@@ -18,7 +18,7 @@ export function ServicesPreview() {
             <div className="mb-[22px] flex items-center gap-3.5">
               <span className="block h-px w-[34px] bg-gold" />
               <span className="font-sans text-[10px] uppercase tracking-[0.34em] text-brand-foreground/60">
-                02 — What we do
+                What we do
               </span>
             </div>
             <h2 className="max-w-[20ch] font-display text-[clamp(30px,4.2vw,64px)] font-normal leading-[1.08] text-balance">
@@ -41,17 +41,9 @@ export function ServicesPreview() {
                   href={`/services#${service.id}`}
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  className="grid grid-cols-[44px_1fr_auto] items-center gap-[18px] border-b border-brand-foreground/15 py-[clamp(18px,2.2vw,26px)] transition-[padding] duration-500 ease-[cubic-bezier(.22,.61,.36,1)] hover:pl-3.5"
+                  className="grid grid-cols-[1fr_auto] items-center gap-[18px] border-b border-brand-foreground/15 py-[clamp(18px,2.2vw,26px)] transition-[padding] duration-500 ease-[cubic-bezier(.22,.61,.36,1)] hover:pl-3.5"
                 >
-                  <span
-                    className={cn(
-                      'font-sans text-[10px] tracking-[0.18em] transition-colors duration-500',
-                      isActive ? 'text-gold' : 'text-brand-foreground/45',
-                    )}
-                  >
-                    {service.num}
-                  </span>
-                  <span className="flex flex-col gap-[5px]">
+                  <span className="flex min-w-0 flex-col gap-[5px]">
                     <span
                       className={cn(
                         'font-display text-[clamp(26px,3vw,42px)] font-normal leading-[1.05] transition-colors duration-500',
@@ -66,7 +58,9 @@ export function ServicesPreview() {
                   </span>
                   <span
                     className={cn(
-                      'whitespace-nowrap font-sans text-[10px] uppercase tracking-[0.24em] transition-colors duration-500',
+                      // Hidden on the narrowest screens so the title keeps the
+                      // full row width.
+                      'hidden whitespace-nowrap font-sans text-[10px] uppercase tracking-[0.24em] transition-colors duration-500 min-[420px]:inline',
                       isActive ? 'text-gold' : 'text-brand-foreground/35',
                     )}
                   >

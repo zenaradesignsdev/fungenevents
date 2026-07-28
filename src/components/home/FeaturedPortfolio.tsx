@@ -14,7 +14,7 @@ export function FeaturedPortfolio() {
             <div className="mb-5 flex items-center gap-3.5">
               <span className="block h-px w-[34px] bg-gold" />
               <span className="font-sans text-[10px] uppercase tracking-[0.34em] text-brand/60">
-                03 — Selected work
+                Selected work
               </span>
             </div>
             <h2 className="max-w-[22ch] font-display text-[clamp(30px,4.2vw,64px)] font-normal leading-[1.08] text-brand text-balance">

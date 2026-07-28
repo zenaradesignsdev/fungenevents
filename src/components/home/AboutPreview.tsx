@@ -37,7 +37,7 @@ export function AboutPreview() {
         {/* Copy */}
         <div className="lg:pt-[clamp(0px,3vw,54px)]">
           <Reveal className="mb-6 flex items-center gap-3.5">
-            <span className="font-sans text-[10px] uppercase tracking-[0.34em] text-gold">01 — The Studio</span>
+            <span className="font-sans text-[10px] uppercase tracking-[0.34em] text-gold">The Studio</span>
             <span className="block h-px flex-1 bg-brand/15" />
           </Reveal>
           <Reveal
