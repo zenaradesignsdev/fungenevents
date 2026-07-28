@@ -54,7 +54,9 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const markSrc = lightText ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold.svg'
+  // Cream over the dark hero; the deeper gold gradient once the bar frosts,
+  // since the logo's own highlight washes out against the warm-white bar.
+  const markSrc = lightText ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold-deep.svg'
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-[200] px-5 pb-[clamp(14px,2vw,26px)] pt-[calc(env(safe-area-inset-top)+clamp(14px,2vw,26px))] sm:px-8 lg:px-16">
@@ -75,7 +77,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           )}
           aria-label="FunGen Events & Experiences — home"
         >
-          <Image src={markSrc} alt="" width={38} height={35} className="h-[34px] w-auto" />
+          <Image src={markSrc} alt="" width={34} height={38} className="h-[38px] w-auto" />
           <span className="font-display text-2xl font-normal uppercase leading-none tracking-[0.14em]">
             FunGen
           </span>
@@ -170,9 +172,9 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             <Image
               src="/images/fungen-mark-gold.svg"
               alt=""
-              width={46}
-              height={42}
-              className="mb-6 h-[46px] w-auto"
+              width={47}
+              height={52}
+              className="mb-6 h-[52px] w-auto"
             />
             <span className="mb-8 font-sans text-[9px] uppercase tracking-[0.4em] text-brand-foreground/45">
               Menu

@@ -1,10 +1,22 @@
+import { Image } from '@/components/ui/image'
 import { Reveal } from '@/components/shared/Reveal'
 
 export function AboutManifesto() {
   return (
     <section className="bg-background px-5 py-[clamp(70px,10vw,150px)] sm:px-8 lg:px-16">
       <div className="mx-auto max-w-[1180px]">
+        {/* Brand seal above the manifesto — signs the statement of belief. */}
+        <Reveal className="mb-[clamp(26px,3.2vw,44px)]">
+          <Image
+            src="/images/fungen-mark-gold-deep.svg"
+            alt=""
+            width={49}
+            height={54}
+            className="h-[54px] w-auto"
+          />
+        </Reveal>
         <Reveal
+          delay={0.06}
           as="p"
           className="font-display text-[clamp(24px,3.2vw,46px)] font-normal leading-[1.42] text-brand text-pretty"
         >

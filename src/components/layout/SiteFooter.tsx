@@ -20,9 +20,9 @@ export function SiteFooter() {
               <Image
                 src="/images/fungen-mark-gold.svg"
                 alt="FunGen Events & Experiences"
-                width={44}
-                height={40}
-                className="h-11 w-auto"
+                width={43}
+                height={48}
+                className="h-12 w-auto"
               />
               <span className="font-display text-3xl uppercase tracking-[0.14em]">FunGen</span>
             </div>
