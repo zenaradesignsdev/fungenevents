@@ -64,7 +64,10 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
         className={cn(
           'pointer-events-auto mx-auto flex max-w-[1560px] items-center justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(.32,.72,0,1)]',
           scrolled
-            ? 'rounded-md border border-brand/10 bg-background/80 px-4 py-2.5 shadow-[0_26px_60px_-34px_rgba(19,30,46,.34)] backdrop-blur-xl backdrop-saturate-150 sm:px-6'
+            // Pill bar to match the buttons. Inline padding only widens once
+            // there is room for it — the curved ends eat horizontal space
+            // exactly where the desktop links first appear.
+            ? 'rounded-full border border-brand/10 bg-background/80 px-5 py-2.5 shadow-[0_26px_60px_-34px_rgba(19,30,46,.34)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 min-[1150px]:px-8'
             : 'border border-transparent px-0 py-2.5',
         )}
       >
@@ -83,7 +86,9 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           </span>
           <span
             className={cn(
-              'hidden pb-0.5 font-sans text-[9px] font-light uppercase tracking-[0.34em] transition-colors duration-500 sm:inline',
+              // Hidden through the 900-1150px band, where the desktop links
+              // and the CTA leave the tagline no room to sit on one line.
+              'hidden whitespace-nowrap pb-0.5 font-sans text-[9px] font-light uppercase tracking-[0.34em] transition-colors duration-500 sm:inline min-[900px]:hidden min-[1150px]:inline',
               lightText ? 'text-brand-foreground/60' : 'text-brand/50',
             )}
           >
@@ -118,7 +123,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           <Link
             href="/contact"
             className={cn(
-              'rounded-full border px-6 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-brand',
+              'whitespace-nowrap rounded-full border px-6 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-brand',
               lightText
                 ? 'border-brand-foreground/35 text-brand-foreground'
                 : 'border-brand/25 text-brand',
