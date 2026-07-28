@@ -118,7 +118,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           <Link
             href="/contact"
             className={cn(
-              'border px-6 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-brand',
+              'rounded-full border px-6 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-500 hover:border-gold hover:bg-gold hover:text-brand',
               lightText
                 ? 'border-brand-foreground/35 text-brand-foreground'
                 : 'border-brand/25 text-brand',
@@ -201,7 +201,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-9 bg-gold px-8 py-[18px] text-center font-sans text-[11px] uppercase tracking-[0.28em] text-brand"
+              className="mt-9 rounded-full bg-gold px-8 py-[18px] text-center font-sans text-[11px] uppercase tracking-[0.28em] text-brand"
             >
               Book a Consultation
             </Link>

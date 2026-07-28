@@ -119,7 +119,7 @@ export function ContactForm() {
               type="button"
               onClick={() => setValue('eventType', type, { shouldValidate: true })}
               className={cn(
-                'border px-5 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-300',
+                'rounded-full border px-5 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-300',
                 active ? 'border-brand bg-brand text-brand-foreground' : 'border-brand/20 text-brand hover:border-brand/50',
               )}
             >
@@ -163,7 +163,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full border border-gold bg-gold px-10 py-[21px] font-sans text-[11px] uppercase tracking-[0.28em] text-brand transition-colors duration-500 hover:bg-brand hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          className="w-full rounded-full border border-gold bg-gold px-10 py-[21px] font-sans text-[11px] uppercase tracking-[0.28em] text-brand transition-colors duration-500 hover:bg-brand hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {isSubmitting ? 'Sending…' : 'Send Enquiry'}
         </button>

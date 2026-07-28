@@ -81,7 +81,7 @@ export function Hero() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-4 bg-background py-2.5 pl-[30px] pr-2.5 font-sans text-[10.5px] uppercase tracking-[0.26em] text-[#101B2B] shadow-[0_30px_60px_-34px_rgba(0,0,0,.7)] transition-colors duration-700 hover:bg-gold"
+                className="group inline-flex items-center gap-4 rounded-full bg-background py-2.5 pl-[30px] pr-2.5 font-sans text-[10.5px] uppercase tracking-[0.26em] text-[#101B2B] shadow-[0_30px_60px_-34px_rgba(0,0,0,.7)] transition-colors duration-700 hover:bg-gold"
               >
                 Check your date
                 <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#101B2B]/10 font-display text-[15px] leading-none transition-transform duration-700 group-hover:translate-x-0.5">
