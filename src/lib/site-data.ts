@@ -13,6 +13,7 @@ const G = (name: string) => `/images/gallery/${name}.jpg`
 
 export type NavLink = { label: string; href: string }
 
+/** Full site map — used by the footer and the sitemap. */
 export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
@@ -20,6 +21,15 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Contact', href: '/contact' },
 ]
+
+/**
+ * Header navigation — Contact is omitted because the nav already carries a
+ * "Start Planning" button (and the mobile menu a "Book a Consultation" CTA)
+ * pointing at the same page.
+ */
+export const PRIMARY_NAV_LINKS: NavLink[] = NAV_LINKS.filter(
+  (link) => link.href !== '/contact',
+)
 
 export const SOCIAL_LINKS: NavLink[] = [
   { label: 'Instagram', href: '#' },

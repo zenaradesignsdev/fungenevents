@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { AnimatePresence, m } from 'framer-motion'
 import { Image } from '@/components/ui/image'
 import { cn } from '@/lib/cn'
-import { NAV_LINKS } from '@/lib/site-data'
+import { PRIMARY_NAV_LINKS } from '@/lib/site-data'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
 
 type SiteNavProps = {
@@ -93,7 +93,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-[clamp(18px,2.6vw,42px)] min-[900px]:flex">
-          {NAV_LINKS.map((link) => {
+          {PRIMARY_NAV_LINKS.map((link) => {
             const active = isActive(pathname, link.href)
             return (
               <Link
@@ -179,7 +179,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             <span className="mb-8 font-sans text-[9px] uppercase tracking-[0.4em] text-brand-foreground/45">
               Menu
             </span>
-            {NAV_LINKS.map((link, i) => (
+            {PRIMARY_NAV_LINKS.map((link, i) => (
               <m.div
                 key={link.href}
                 initial={{ opacity: 0, y: 38 }}
