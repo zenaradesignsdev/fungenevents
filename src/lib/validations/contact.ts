@@ -16,8 +16,10 @@ export const contactSchema = z.object({
   guests: z.string().trim().max(40).optional().or(z.literal('')),
   budget: z.string().trim().max(40).optional().or(z.literal('')),
   message: z.string().trim().max(4000).optional().or(z.literal('')),
-  // Honeypot — real users never fill this; bots often do.
-  company: z.string().max(0).optional().or(z.literal('')),
+  // Honeypot — real users never fill this; bots often do. It must PASS schema
+  // validation (bounded length only) so the API route can silently drop a
+  // filled value with a 200, giving bots no signal that they were caught.
+  company: z.string().max(200).optional().or(z.literal('')),
 })
 
 export type ContactFormValues = z.infer<typeof contactSchema>

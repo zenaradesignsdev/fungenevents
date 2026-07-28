@@ -16,13 +16,23 @@
 
 ## Current Status
 
-This repo currently ships a **single placeholder landing page** only (`/`). The client
-needed something to hand to prospective customers now while the full multi-page site
-design is still being finalized in a separate Claude design project. The contact page,
-contact form, and Resend API route from the boilerplate were removed for this phase —
-the landing page uses direct `mailto:` and `tel:` links with placeholder contact details
-instead. Re-add `src/app/contact/`, `src/app/api/contact/`, and the Resend env vars
-(commented out in `.env.local.example`) when the full site is built.
+This repo now ships the **full multi-page marketing site** (`/`, `/about`, `/services`,
+`/portfolio`, `/contact`), converted from the finalized Claude design mockups. The old
+single-page placeholder (`HomeLanding` / `CategoryCarousel`) has been removed.
+
+Content and imagery live in `src/lib/site-data.ts`; page sections are componentised under
+`src/components/{home,about,services,portfolio,contact,layout,shared}`. Shared design
+primitives: `SiteNav`, `SiteFooter`, `Reveal`, `CtaBand`, `CtaButton`, `ArrowLink`,
+`Eyebrow`, `ImageHero`, `PageIntroHero`, `PortfolioCard`, `GrainOverlay`.
+
+The contact form (`src/app/contact/`) posts to the Resend route at `src/app/api/contact/`
+(react-hook-form + Zod, honeypot, IP rate limiting via `src/lib/rate-limit.ts`). It needs
+`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` set in Vercel — without them the
+route returns a friendly 503 and the form surfaces an error toast.
+
+Known follow-up: 3 high-severity `sharp`/libvips CVEs remain; the fix is a breaking
+`sharp` bump best done via a Next.js upgrade (deferred — the site only processes trusted
+local images). Still add a real Google Maps embed on `/contact` (currently a Maps link).
 
 ---
 
@@ -54,42 +64,52 @@ Typography and full layout are still pending the finalized Claude design.
 
 ## Typography
 
-Currently default boilerplate Inter (`src/lib/fonts.ts`) — not yet customized since this
-is a temporary placeholder page. Revisit when the full site design is finalized.
+Set in `src/lib/fonts.ts` (loaded via `next/font/google`, self-hosted → CSP-compliant):
+
+- **Display / headings**: Bodoni Moda (serif), `--font-display` → Tailwind `font-display`.
+- **Body / UI**: Archivo (sans, weights 300/400/500), `--font-sans` → Tailwind `font-sans`.
+
+Both `.variable`s are applied on `<html>` in `layout.tsx`. Bodoni Moda has no Next
+font-metrics entry, so `adjustFontFallback: false` + an explicit serif fallback are set to
+keep the build warning-free.
 
 ---
 
 ## CMS
 
-- **Platform**: None (static placeholder page)
+- **Platform**: None. Content is hardcoded in `src/lib/site-data.ts` (typed data module).
 
 ---
 
 ## Pages
 
-- [x] Home (`/`) — placeholder "full site coming soon" page with email/call CTAs
-- [ ] Contact (`/contact`) — removed for now, re-add for full site
-- [ ] Additional pages — to be defined once the full site design is finalized
+- [x] Home (`/`) — hero, discipline marquee, studio preview, interactive services, why-us,
+  featured portfolio, testimonials carousel, CTA band
+- [x] About (`/about`) — manifesto, mission/vision, core values, process, why-choose, CTA
+- [x] Services (`/services`) — 6 discipline sections with included/options + FAQ accordions
+- [x] Portfolio (`/portfolio`) — filterable gallery + client stories
+- [x] Contact (`/contact`) — enquiry form (Resend) + details + Maps link
 
 ---
 
 ## Content & Copy
 
 - **Tone**: Warm, professional, celebratory
-- Phone and address on the landing page (`src/lib/metadata.ts` → `businessInfo`) are
-  real. `CONTACT_EMAIL` in `src/components/home/HomeLanding.tsx` is still a placeholder.
-- Real phone/address are also emitted as `LocalBusiness` JSON-LD in `src/app/page.tsx`
-  for local SEO.
+- All copy/imagery centralised in `src/lib/site-data.ts`.
+- Real phone/address/email in `src/lib/metadata.ts` → `businessInfo` (email
+  `hello@fungenevents.ca` is still a placeholder pending the client). Emitted as
+  `LocalBusiness` JSON-LD (with `areaServed`) on the homepage in `src/app/page.tsx`.
 
 ---
 
 ## Images
 
-- `public/images/` holds the hero background, six category-carousel photos (stock/CC0 —
-  see git history for sourcing), and `fungen-logo.svg` (client-provided).
-- No OG image yet — add `public/og-image.jpg` (1200×630) once available.
-- SVG logo requires `dangerouslyAllowSVG` in `next.config.mjs` (already enabled, scoped
-  to this trusted local asset only — never enable for user-uploaded SVGs).
+- `public/images/gallery/` holds 22 event photos (downloaded locally from the design's
+  stock sources so they serve same-origin under the `img-src 'self'` CSP).
+- `public/images/fungen-mark-gold.svg` / `fungen-mark-cream.svg` — nav/footer logo marks.
+- `public/og-image.jpg` (1200×630) — brand OG card, generated with sharp.
+- SVG marks require `dangerouslyAllowSVG` in `next.config.mjs` (already enabled, scoped
+  to trusted local assets only — never enable for user-uploaded SVGs).
 - Use `<Image />` from `@/components/ui/image` for all rendered images — never raw `<img>`
 
 ---
@@ -98,7 +118,11 @@ is a temporary placeholder page. Revisit when the full site design is finalized.
 
 | Package | Reason |
 |---|---|
-| None | No dependencies added beyond the boilerplate |
+| None | Uses only boilerplate deps (framer-motion, RHF+Zod, Resend, sonner, etc.) |
+
+Bundle note: framer-motion is loaded via `LazyMotion` + `domAnimation` in `Providers.tsx`
+(`strict` mode) — always use `m.*`, never `motion.*`, or it will throw. The unused TanStack
+Query provider was removed; re-add it if a real client query is introduced.
 
 Note: added a `gold` Tailwind colour token (`--gold` / `--gold-foreground` in
 `globals.css`, `gold` variant in `tailwind.config.ts` and `button.tsx`) since the

@@ -88,21 +88,21 @@ export function ContactForm() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[clamp(22px,2.6vw,38px)]">
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Your name *</span>
-          <input type="text" placeholder="First and last" className={fieldClass} {...register('name')} />
+          <input type="text" autoComplete="name" placeholder="First and last" className={fieldClass} {...register('name')} />
           {errors.name && <span className="font-sans text-xs text-destructive">{errors.name.message}</span>}
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Email *</span>
-          <input type="email" placeholder="you@example.com" className={fieldClass} {...register('email')} />
+          <input type="email" autoComplete="email" placeholder="you@example.com" className={fieldClass} {...register('email')} />
           {errors.email && <span className="font-sans text-xs text-destructive">{errors.email.message}</span>}
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Phone</span>
-          <input type="tel" placeholder="Optional" className={fieldClass} {...register('phone')} />
+          <input type="tel" autoComplete="tel" placeholder="Optional" className={fieldClass} {...register('phone')} />
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Event date</span>
-          <input type="text" placeholder="Or 'not decided yet'" className={fieldClass} {...register('date')} />
+          <input type="text" autoComplete="off" placeholder="Or 'not decided yet'" className={fieldClass} {...register('date')} />
         </label>
       </div>
 
@@ -163,7 +163,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="border border-gold bg-gold px-10 py-[21px] font-sans text-[11px] uppercase tracking-[0.28em] text-brand transition-colors duration-500 hover:bg-brand hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full border border-gold bg-gold px-10 py-[21px] font-sans text-[11px] uppercase tracking-[0.28em] text-brand transition-colors duration-500 hover:bg-brand hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {isSubmitting ? 'Sending…' : 'Send Enquiry'}
         </button>

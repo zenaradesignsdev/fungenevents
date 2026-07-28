@@ -17,7 +17,7 @@ export function PageIntroHero({ eyebrow, title, description }: PageIntroHeroProp
           <span className="block h-px w-[clamp(34px,5vw,72px)] bg-gold" />
           <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-brand/60">{eyebrow}</span>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-end gap-[clamp(28px,4vw,80px)]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-end gap-[clamp(28px,4vw,80px)]">
           <h1 className="max-w-[18ch] font-display text-[clamp(38px,6.2vw,96px)] font-normal leading-[0.99] tracking-[-0.015em] text-brand text-balance">
             {title}
           </h1>

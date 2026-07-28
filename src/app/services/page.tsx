@@ -11,9 +11,9 @@ import { ServiceSection } from '@/components/services/ServiceSection'
 import { SERVICES } from '@/lib/site-data'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Services — Weddings, Birthdays, Galas & Entertainment',
+  title: 'Event Planning Services',
   description:
-    'Luxury event planning services from FunGen Events & Experiences: wedding planning, birthdays, anniversaries, social events, entertainment production and nonprofit event management.',
+    'Event planning services from FunGen Events & Experiences: weddings, birthdays, anniversaries, social events, entertainment production and nonprofit galas.',
   path: '/services',
 })
 

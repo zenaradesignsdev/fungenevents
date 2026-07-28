@@ -58,7 +58,7 @@ export function SiteFooter() {
           {/* Studio */}
           <div>
             <span className={headingClass}>Studio</span>
-            <div className="flex flex-col gap-4 font-sans text-[13px] font-light leading-[1.7] text-brand-foreground/80">
+            <address className="flex flex-col gap-4 font-sans text-[13px] font-light not-italic leading-[1.7] text-brand-foreground/80">
               <a href={`tel:${businessInfo.telephone}`} className="transition-colors duration-300 hover:text-gold">
                 {businessInfo.telephoneDisplay}
               </a>
@@ -76,7 +76,7 @@ export function SiteFooter() {
                 <br />
                 Sat by appointment
               </span>
-            </div>
+            </address>
           </div>
         </div>
 

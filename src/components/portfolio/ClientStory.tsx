@@ -83,7 +83,7 @@ export function ClientStory({ story, shaded }: { story: Story; shaded: boolean }
         >
           Client story — {story.index}
         </Reveal>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-[clamp(38px,5vw,92px)]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(38px,5vw,92px)]">
           {story.imageFirst ? (
             <>
               {imageBlock}

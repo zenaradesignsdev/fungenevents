@@ -1,26 +1,25 @@
 'use client'
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useState } from 'react'
+import { LazyMotion, domAnimation } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
 
+/**
+ * App-wide client providers.
+ *
+ * LazyMotion + domAnimation ships only the DOM animation features Framer needs
+ * (~15KB) instead of the full `motion` bundle (~55KB). `strict` enforces the
+ * lightweight `m.*` components everywhere — using `motion.*` will throw, which
+ * keeps the bundle small by construction.
+ *
+ * (TanStack Query was removed — nothing in the app issues client queries; the
+ * contact form posts with a plain fetch. Re-add QueryClientProvider here if a
+ * real client-side query is introduced.)
+ */
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 60 * 1000,
-            retry: 1,
-          },
-        },
-      })
-  )
-
   return (
-    <QueryClientProvider client={queryClient}>
+    <LazyMotion features={domAnimation} strict>
       {children}
       <Toaster position="bottom-right" richColors />
-    </QueryClientProvider>
+    </LazyMotion>
   )
 }

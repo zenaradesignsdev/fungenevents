@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { PortfolioCard } from '@/components/shared/PortfolioCard'
 import { PORTFOLIO_CATS, PORTFOLIO_ITEMS } from '@/lib/site-data'
 
 export function PortfolioGallery() {
   const [cat, setCat] = useState('All')
+  const prefersReduced = useReducedMotion()
 
   const countFor = (c: string) =>
     c === 'All' ? PORTFOLIO_ITEMS.length : PORTFOLIO_ITEMS.filter((w) => w.cat === c).length
@@ -18,7 +19,7 @@ export function PortfolioGallery() {
     <section className="bg-background px-5 pb-[clamp(70px,10vw,140px)] sm:px-8 lg:px-16">
       <div className="mx-auto max-w-[1560px]">
         {/* Filter bar */}
-        <div className="sticky top-[74px] z-50 mb-[clamp(26px,3vw,44px)] flex flex-wrap gap-x-[clamp(16px,2.4vw,36px)] border-y border-brand/15 bg-background/95 backdrop-blur-md">
+        <div className="no-scrollbar sticky top-[74px] z-50 mb-[clamp(26px,3vw,44px)] flex flex-nowrap gap-x-[clamp(16px,2.4vw,36px)] overflow-x-auto border-y border-brand/15 bg-background/95 backdrop-blur-md sm:flex-wrap sm:overflow-x-visible">
           {PORTFOLIO_CATS.map((c) => {
             const active = c === cat
             return (
@@ -27,7 +28,7 @@ export function PortfolioGallery() {
                 type="button"
                 onClick={() => setCat(c)}
                 className={cn(
-                  'relative py-[18px] font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-300 hover:text-gold',
+                  'relative whitespace-nowrap py-[18px] font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-300 hover:text-gold',
                   active ? 'text-gold' : 'text-brand/70',
                 )}
               >
@@ -50,10 +51,9 @@ export function PortfolioGallery() {
         {/* Grid */}
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(14px,1.6vw,26px)]">
           {shown.map((item, i) => (
-            <motion.div
+            <m.div
               key={item.title}
-              layout
-              initial={{ opacity: 0, y: 22 }}
+              initial={prefersReduced ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: Math.min(i * 0.04, 0.3), ease: [0.22, 0.61, 0.36, 1] }}
             >
@@ -66,7 +66,7 @@ export function PortfolioGallery() {
                 meta={item.meta}
                 ratio={item.ratio}
               />
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

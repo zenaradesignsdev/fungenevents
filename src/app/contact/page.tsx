@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { generateMetadata as buildMetadata } from '@/lib/metadata'
 import { SiteNav } from '@/components/layout/SiteNav'
 import { SiteFooter } from '@/components/layout/SiteFooter'
@@ -6,14 +7,20 @@ import { GrainOverlay } from '@/components/shared/GrainOverlay'
 import { PageIntroHero } from '@/components/shared/PageIntroHero'
 import { CtaBand } from '@/components/shared/CtaBand'
 import { CtaButton } from '@/components/shared/CtaButton'
-import { ContactForm } from '@/components/contact/ContactForm'
 import { ContactDetails } from '@/components/contact/ContactDetails'
 import { businessInfo } from '@/lib/metadata'
 
+// The form pulls in react-hook-form + zod; defer it so it doesn't weigh down
+// the initial load of the site's most JS-heavy route.
+const ContactForm = dynamic(
+  () => import('@/components/contact/ContactForm').then((m) => m.ContactForm),
+  { loading: () => <div className="h-[600px] animate-pulse rounded bg-secondary" /> },
+)
+
 export const metadata: Metadata = buildMetadata({
-  title: 'Contact — Book a Consultation',
+  title: 'Book a Consultation',
   description:
-    'Contact FunGen Events & Experiences to plan a wedding, birthday, anniversary, social event, entertainment production or nonprofit gala. Consultations open for 2026 and 2027.',
+    'Contact FunGen Events & Experiences to plan a Toronto wedding, birthday, anniversary, social event, entertainment production or nonprofit gala this season.',
   path: '/contact',
 })
 

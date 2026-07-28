@@ -37,10 +37,17 @@ export function getLocalBusinessJsonLd() {
     description: siteConfig.description,
     url: siteConfig.url,
     telephone: businessInfo.telephone,
+    email: businessInfo.email,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',
       ...businessInfo.address,
     },
+    areaServed: [
+      { '@type': 'City', name: 'Toronto' },
+      { '@type': 'AdministrativeArea', name: 'Greater Toronto Area' },
+    ],
   }
 }
 

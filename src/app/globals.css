@@ -53,6 +53,12 @@
     @apply bg-background font-sans text-foreground antialiased;
   }
 
+  /* Backstop against horizontal scroll from decorative bleeds / vw units. */
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+
   /* Brand text selection */
   ::selection {
     background: hsl(var(--gold));

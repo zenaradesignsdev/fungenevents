@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Image } from '@/components/ui/image'
 import { cn } from '@/lib/cn'
 import { NAV_LINKS } from '@/lib/site-data'
@@ -39,10 +39,25 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
     }
   }, [open])
 
+  // Close the menu on route change (fallback beyond per-link onClick).
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  // Close the menu on Escape.
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   const markSrc = lightText ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold.svg'
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-[200] px-5 py-[clamp(14px,2vw,26px)] sm:px-8 lg:px-16">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-[200] px-5 pb-[clamp(14px,2vw,26px)] pt-[calc(env(safe-area-inset-top)+clamp(14px,2vw,26px))] sm:px-8 lg:px-16">
       <div
         className={cn(
           'pointer-events-auto mx-auto flex max-w-[1560px] items-center justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(.32,.72,0,1)]',
@@ -60,7 +75,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           )}
           aria-label="FunGen Events & Experiences — home"
         >
-          <Image src={markSrc} alt="" width={38} height={35} className="h-[34px] w-auto" priority />
+          <Image src={markSrc} alt="" width={38} height={35} className="h-[34px] w-auto" />
           <span className="font-display text-2xl font-normal uppercase leading-none tracking-[0.14em]">
             FunGen
           </span>
@@ -117,23 +132,24 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
-          className="flex w-8 flex-col gap-1.5 py-2.5 min-[900px]:hidden"
+          aria-controls="mobile-menu"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 min-[900px]:hidden"
         >
           <span
             className={cn(
-              'block h-px w-full origin-center transition-all duration-500',
+              'block h-px w-6 origin-center transition-all duration-500',
               open ? 'translate-y-[7px] rotate-45 bg-brand-foreground' : lightText ? 'bg-brand-foreground' : 'bg-brand',
             )}
           />
           <span
             className={cn(
-              'block h-px w-[70%] transition-all duration-300',
+              'block h-px w-4 transition-all duration-300',
               open ? 'opacity-0' : lightText ? 'bg-brand-foreground' : 'bg-brand',
             )}
           />
           <span
             className={cn(
-              'block h-px w-full origin-center transition-all duration-500',
+              'block h-px w-6 origin-center transition-all duration-500',
               open ? '-translate-y-[7px] -rotate-45 bg-brand-foreground' : lightText ? 'bg-brand-foreground' : 'bg-brand',
             )}
           />
@@ -143,12 +159,13 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
       {/* Mobile fullscreen overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
+            id="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-            className="pointer-events-auto fixed inset-0 z-[190] flex flex-col justify-center bg-brand px-6 sm:px-12"
+            className="pointer-events-auto fixed inset-0 z-[190] flex flex-col justify-center bg-brand px-6 pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] sm:px-12"
           >
             <Image
               src="/images/fungen-mark-gold.svg"
@@ -161,7 +178,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
               Menu
             </span>
             {NAV_LINKS.map((link, i) => (
-              <motion.div
+              <m.div
                 key={link.href}
                 initial={{ opacity: 0, y: 38 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -177,7 +194,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
                 >
                   {link.label}
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
             <Link
               href="/contact"
@@ -186,7 +203,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             >
               Book a Consultation
             </Link>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

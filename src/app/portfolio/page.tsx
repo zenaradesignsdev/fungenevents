@@ -11,9 +11,9 @@ import { ClientStory } from '@/components/portfolio/ClientStory'
 import { PORTFOLIO_STORIES } from '@/lib/site-data'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Portfolio — Luxury Events & Celebrations',
+  title: 'Event Portfolio',
   description:
-    'A gallery of weddings, milestone birthdays, anniversaries, social events, entertainment productions and nonprofit galas designed by FunGen Events & Experiences.',
+    'A gallery of Toronto weddings, milestone birthdays, anniversaries, social events, entertainment productions and nonprofit galas by FunGen Events & Experiences.',
   path: '/portfolio',
 })
 

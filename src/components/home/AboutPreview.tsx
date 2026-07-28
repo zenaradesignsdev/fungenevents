@@ -19,7 +19,7 @@ export function AboutPreview() {
               className="h-full w-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(.22,.61,.36,1)] hover:scale-105"
             />
           </div>
-          <div className="absolute -bottom-[11%] -right-[6%] aspect-square w-[46%] max-w-[280px] overflow-hidden border-[10px] border-background bg-secondary">
+          <div className="absolute -bottom-[6%] -right-[2%] aspect-square w-[46%] max-w-[280px] overflow-hidden border-[10px] border-background bg-secondary lg:-bottom-[11%] lg:-right-[6%]">
             <Image
               src="/images/gallery/place-setting-detail.jpg"
               alt="Place setting detail"

@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { contactSchema } from '@/lib/validations/contact'
+import { rateLimit } from '@/lib/rate-limit'
 import { businessInfo } from '@/lib/metadata'
 import { logger } from '@/lib/logger'
+
+function clientIp(request: Request): string {
+  const forwarded = request.headers.get('x-forwarded-for')
+  if (forwarded) return forwarded.split(',')[0].trim()
+  return request.headers.get('x-real-ip') ?? 'unknown'
+}
 
 const escapeHtml = (value: string) =>
   value
@@ -12,6 +19,16 @@ const escapeHtml = (value: string) =>
     .replace(/"/g, '&quot;')
 
 export async function POST(request: Request) {
+  // Rate limit by IP first, before doing any work, to blunt abuse of the
+  // email-sending endpoint (5 requests / 10 minutes).
+  const limit = rateLimit(`contact:${clientIp(request)}`)
+  if (!limit.success) {
+    return NextResponse.json(
+      { error: 'Too many enquiries from this device. Please try again shortly.' },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfterSeconds) } },
+    )
+  }
+
   let payload: unknown
   try {
     payload = await request.json()

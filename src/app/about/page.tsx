@@ -15,7 +15,7 @@ import { WhyChooseFunGen } from '@/components/about/WhyChooseFunGen'
 export const metadata: Metadata = buildMetadata({
   title: 'About the Studio',
   description:
-    'Meet FunGen Events & Experiences — our mission, values and planning approach for weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
+    'Meet FunGen Events & Experiences: the mission, values and calm planning behind our Toronto weddings, milestone celebrations, galas and nonprofit events.',
   path: '/about',
 })
 

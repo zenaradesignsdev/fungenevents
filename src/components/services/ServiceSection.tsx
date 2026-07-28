@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Image } from '@/components/ui/image'
 import { cn } from '@/lib/cn'
 import { Reveal } from '@/components/shared/Reveal'
@@ -139,7 +139,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                     </button>
                     <AnimatePresence initial={false}>
                       {isOpen && (
-                        <motion.div
+                        <m.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -149,7 +149,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                           <p className="mb-[22px] max-w-[56ch] font-sans text-[14.5px] font-light leading-[1.9] text-foreground/75 text-pretty">
                             {faq.a}
                           </p>
-                        </motion.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
                   </div>

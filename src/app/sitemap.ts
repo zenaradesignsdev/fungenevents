@@ -20,7 +20,7 @@ const ROUTES: { path: string; priority: number }[] = [
   { path: '/services', priority: 0.9 },
   { path: '/portfolio', priority: 0.8 },
   { path: '/about', priority: 0.7 },
-  { path: '/contact', priority: 0.7 },
+  { path: '/contact', priority: 0.6 },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

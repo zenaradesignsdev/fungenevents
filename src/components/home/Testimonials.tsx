@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { TESTIMONIALS } from '@/lib/site-data'
 
@@ -34,7 +34,7 @@ export function Testimonials() {
 
         <div className="min-h-[clamp(180px,20vw,300px)]">
           <AnimatePresence mode="wait">
-            <motion.blockquote
+            <m.blockquote
               key={index}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export function Testimonials() {
               className="font-display text-[clamp(25px,3.6vw,54px)] font-normal italic leading-[1.34] text-brand-foreground text-pretty"
             >
               “{active.quote}”
-            </motion.blockquote>
+            </m.blockquote>
           </AnimatePresence>
         </div>
 
@@ -62,7 +62,7 @@ export function Testimonials() {
                 onClick={() => setIndex(i)}
                 aria-label={`Show testimonial ${i + 1}`}
                 aria-current={i === index}
-                className="flex items-center gap-2.5 py-2"
+                className="flex items-center gap-2.5 px-1 py-3"
               >
                 <span
                   className={cn(

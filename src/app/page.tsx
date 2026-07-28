@@ -14,9 +14,9 @@ import { FeaturedPortfolio } from '@/components/home/FeaturedPortfolio'
 import { Testimonials } from '@/components/home/Testimonials'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Luxury Event Planning & Experience Design',
+  title: 'Toronto Event Planning',
   description:
-    'FunGen Events & Experiences is a Toronto luxury event planning studio designing weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
+    'Toronto luxury event planning by FunGen Events & Experiences — weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
   path: '/',
 })
 
