@@ -104,7 +104,7 @@ export function Hero() {
               priority LCP image paints without delay. */}
           <div className="min-w-0">
             <div className="grid h-[clamp(320px,58vh,600px)] grid-cols-1 gap-2.5 min-[480px]:grid-cols-[1.4fr_0.6fr]">
-              <div className="relative overflow-hidden rounded-lg bg-[#0B131F] shadow-[0_60px_110px_-56px_rgba(0,0,0,.8)] ring-1 ring-gold/45">
+              <div className="relative overflow-hidden rounded-lg bg-[#0B131F] shadow-[0_60px_110px_-56px_rgba(0,0,0,.8)] ring-2 ring-gold/50">
                 <Image
                   src={HERO_HIGHLIGHTS.primary.image}
                   alt={HERO_HIGHLIGHTS.primary.alt}
@@ -124,7 +124,7 @@ export function Hero() {
                 </span>
               </div>
               <div className="hidden grid-rows-[0.56fr_0.44fr] gap-2.5 pt-[clamp(18px,3.5vw,58px)] min-[480px]:grid">
-                <div className="relative overflow-hidden rounded-lg bg-[#0B131F] ring-1 ring-gold/45">
+                <div className="relative overflow-hidden rounded-lg bg-[#0B131F] ring-2 ring-gold/50">
                   <Image
                     src={HERO_HIGHLIGHTS.secondary.image}
                     alt={HERO_HIGHLIGHTS.secondary.alt}
@@ -133,7 +133,7 @@ export function Hero() {
                     className="object-cover motion-safe:animate-kenburns"
                   />
                 </div>
-                <div className="flex flex-col justify-center gap-2.5 overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(250,248,245,.07),rgba(250,248,245,.02))] p-[clamp(16px,1.6vw,22px)] ring-1 ring-gold/45">
+                <div className="flex flex-col justify-center gap-2.5 overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(250,248,245,.07),rgba(250,248,245,.02))] p-[clamp(16px,1.6vw,22px)] ring-2 ring-gold/50">
                   <span className="font-display text-[clamp(14px,1.1vw,17px)] italic leading-[1.45] text-brand-foreground/95 text-pretty">
                     “{HERO_HIGHLIGHTS.quote.text}”
                   </span>
