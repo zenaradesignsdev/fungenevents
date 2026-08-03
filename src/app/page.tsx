@@ -41,7 +41,7 @@ export default function HomePage() {
           image="/images/gallery/reception-ballroom.jpg"
           imageAlt="Ballroom set for an evening reception"
           eyebrow="Consultations open for 2026 & 2027"
-          title="Let's create something extraordinary together"
+          title="Most of our best events start with an email like this one."
           description="Tell us the date, the guest count, and the feeling you're after. We'll come back with a plan, a budget, and a point of view."
           animateImage
         >

@@ -113,6 +113,7 @@ export const SERVICES: Service[] = [
       { q: 'Do you offer month-of coordination only?', a: 'Occasionally, when the calendar allows. Most couples come to us for full planning, which is where we can actually protect the budget and the design.' },
       { q: 'Will you travel?', a: 'Yes. Roughly a third of our weddings are destination events. Travel and accommodation are billed at cost.' },
       { q: 'How many meetings should we expect?', a: 'Typically ten to fourteen across the engagement, plus unlimited email. We would rather over-communicate early than improvise late.' },
+      { q: 'Do you plan South Asian or multi-day weddings?', a: 'Regularly — mehndi, sangeet, baraat and reception across three or four days is close to a third of our wedding calendar. One lead planner runs the full weekend, so nothing gets re-explained to a new face on day two.' },
     ],
     cta: 'Enquire about your date',
     image: G('wedding-couple'),
@@ -259,19 +260,19 @@ export const HERO_HIGHLIGHTS = {
     image: G('candlelit-tablescape'),
     alt: 'Candlelit tablescape with layered florals',
   },
-  quote: {
-    text: 'The run of show was so tight our board chair actually got to eat dinner.',
-    author: 'Priya V. · North Ward Trust',
+  tertiary: {
+    image: G('candlelit-toast'),
+    alt: 'Guests raising a candlelit toast around a long dinner table',
   },
 }
 
 export const DISCIPLINE_MARQUEE = SERVICES.map((s) => s.title)
 
 export const STUDIO_PILLARS = [
-  { num: '01', title: 'Personal by default', body: 'No package menus. We design from your story.' },
-  { num: '02', title: 'Obsessive detail', body: 'Linens to load-in times, documented and checked.' },
-  { num: '03', title: 'Honest budgets', body: 'Clear numbers early, no surprises later.' },
-  { num: '04', title: 'Calm execution', body: 'On the day, you are a guest at your own event.' },
+  { title: 'Personal by default', body: 'No package menus. We design from your story.' },
+  { title: 'Obsessive detail', body: 'Linens to load-in times, documented and checked.' },
+  { title: 'Honest budgets', body: 'Clear numbers early, no surprises later.' },
+  { title: 'Calm execution', body: 'On the day, you are a guest at your own event.' },
 ]
 
 export const REASONS = [
@@ -281,6 +282,8 @@ export const REASONS = [
   { num: '04', title: 'Trusted vendor network', body: 'Florists, chefs, bands and technicians we have worked beside for years — and who answer the phone at 6am.' },
   { num: '05', title: 'Memorable guest experiences', body: 'We design the arrival, the seating and the exit, because guests remember transitions more than centerpieces.' },
   { num: '06', title: 'Professional event management', body: 'Permits, insurance, load-in logistics and contingency plans handled quietly in the background.' },
+  { num: '07', title: 'Fluent in South Asian weddings', body: 'Baraats, sangeets, mandap builds, the seating chart for both families — we picked up the choreography of South Asian weddings the same way we learned everyone else’s: by doing a lot of them.' },
+  { num: '08', title: 'One planner, the whole weekend', body: 'Mehndi, sangeet, ceremony and reception, run by the same lead planner and the same vendor list — nothing gets re-explained to a new face on day two.' },
 ]
 
 export type Testimonial = { quote: string; author: string; role: string }
@@ -288,6 +291,7 @@ export type Testimonial = { quote: string; author: string; role: string }
 export const TESTIMONIALS: Testimonial[] = [
   { quote: 'We came in with a spreadsheet and a lot of anxiety. FunGen turned it into an evening our families still talk about — and they did it without ever making us feel rushed or upsold.', author: 'Amara & Daniel R.', role: 'Wedding, 220 guests — Riverside Estate' },
   { quote: 'Our gala raised thirty percent more than the previous year. The run of show was so tight that our board chair actually got to eat dinner.', author: 'Priya Venkatesan', role: 'Executive Director, Northgate Youth Foundation' },
+  { quote: 'Three days, four outfit changes each, two hundred and sixty guests who all had an opinion about the DJ — and every event started on time. My father still doesn’t understand how they pulled off the baraat without a delay.', author: 'Ritu & Karan S.', role: 'Wedding weekend, 260 guests — banquet hall, Markham' },
   { quote: 'My mother has never once been surprised in her life. She cried in the doorway. That is the entire review.', author: 'Marcus Whitfield', role: '70th Birthday, private residence' },
 ]
 
@@ -307,18 +311,21 @@ export type PortfolioItem = {
 export const PORTFOLIO_CATS = ['All', 'Weddings', 'Birthdays', 'Anniversaries', 'Social', 'Entertainment', 'Nonprofit']
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  { cat: 'Weddings', tag: 'Wedding', title: 'The Long Table, Willow Barn', meta: '180 guests · Willow Barn Estate', year: '2025', image: G('wedding-first-dance'), ratio: 'portrait', alt: 'First dance under warm festoon lighting' },
-  { cat: 'Anniversaries', tag: 'Anniversary', title: 'Forty Years, One Courtyard', meta: '86 guests · private courtyard', year: '2025', image: G('banquet-table'), ratio: 'square', alt: 'Long banquet table laid with place settings' },
-  { cat: 'Birthdays', tag: 'Birthday', title: 'Midnight Confetti, Loft 9', meta: '120 guests · 30th birthday', year: '2026', image: G('confetti-crowd'), ratio: 'portrait', alt: 'Confetti falling over a crowd' },
+  { cat: 'Weddings', tag: 'Wedding', title: 'The Long Table', meta: '180 guests · a converted barn north of the city', year: '2025', image: G('wedding-first-dance'), ratio: 'portrait', alt: 'First dance under warm festoon lighting' },
+  { cat: 'Weddings', tag: 'Wedding', title: 'Under the Mandap', meta: '260 guests · a banquet hall in Markham', year: '2026', image: G('wedding-mandap'), ratio: 'square', alt: 'Couple seated at a floral mandap during their Hindu wedding ceremony' },
+  { cat: 'Birthdays', tag: 'Birthday', title: 'A 30th at Loft 9', meta: '120 guests · a rented loft downtown', year: '2026', image: G('confetti-crowd'), ratio: 'portrait', alt: 'Confetti falling over a crowd' },
+  { cat: 'Weddings', tag: 'Sangeet', title: 'Sangeet Night', meta: '220 guests · a banquet hall west of the city', year: '2025', image: G('sangeet-dance'), ratio: 'portrait', alt: 'Guests in saris dancing under coloured stage lighting at a sangeet' },
   { cat: 'Nonprofit', tag: 'Nonprofit Gala', title: 'The Northgate Benefit', meta: '400 guests · $1.2M raised', year: '2025', image: G('ballroom-round-tables'), ratio: 'square', alt: 'Ballroom set with round tables' },
-  { cat: 'Entertainment', tag: 'Entertainment', title: 'After Hours Sessions', meta: '900 capacity · 3-night residency', year: '2026', image: G('mirror-balls'), ratio: 'portrait', alt: 'Mirror balls above a dance floor' },
-  { cat: 'Social', tag: 'Social', title: 'Garden Reunion, Hillcrest', meta: '60 guests · family reunion', year: '2025', image: G('outdoor-guests'), ratio: 'square', alt: 'Guests gathered outdoors in daylight' },
-  { cat: 'Weddings', tag: 'Wedding', title: 'Ceremony at Dusk', meta: '140 guests · coastal chapel', year: '2024', image: G('wedding-couple'), ratio: 'square', alt: 'Couple photographed on their wedding day' },
-  { cat: 'Entertainment', tag: 'Festival', title: 'Riverfront Live', meta: '2,400 capacity · two stages', year: '2025', image: G('outdoor-concert'), ratio: 'portrait', alt: 'Crowd at an outdoor concert' },
-  { cat: 'Birthdays', tag: 'Birthday', title: 'Seventy, Quietly', meta: '24 guests · private residence', year: '2026', image: G('crystal-glassware'), ratio: 'square', alt: 'Crystal glassware on a candlelit table' },
-  { cat: 'Social', tag: 'Social', title: 'The Graduation Lunch', meta: '48 guests · rooftop terrace', year: '2025', image: G('two-guests'), ratio: 'portrait', alt: 'Two guests in conversation holding glasses' },
-  { cat: 'Nonprofit', tag: 'Auction', title: 'Paddles Up, Harbour House', meta: '220 guests · donor evening', year: '2024', image: G('toast-auction'), ratio: 'portrait', alt: 'Guests raising glasses in a toast' },
-  { cat: 'Anniversaries', tag: 'Vow Renewal', title: 'Twenty-Five, Rewritten', meta: '70 guests · vineyard terrace', year: '2026', image: G('reception-ballroom'), ratio: 'square', alt: 'Tables set in a softly lit room' },
+  { cat: 'Weddings', tag: 'Mehndi', title: 'Henna, the Night Before', meta: '40 guests · a mehndi night in Brampton', year: '2026', image: G('mehndi-hands'), ratio: 'portrait', alt: 'Bridal hand decorated with henna ahead of the wedding' },
+  { cat: 'Entertainment', tag: 'Private Party', title: 'A Lounge, Rented Out for the Night', meta: '160 guests · a downtown lounge, just for us', year: '2026', image: G('mirror-balls'), ratio: 'portrait', alt: 'Mirror balls above a dance floor' },
+  { cat: 'Anniversaries', tag: 'Anniversary', title: 'Forty Years, One Courtyard', meta: '86 guests · private courtyard', year: '2025', image: G('banquet-table'), ratio: 'square', alt: 'Long banquet table laid with place settings' },
+  { cat: 'Social', tag: 'Social', title: 'A Family Reunion in Hillcrest', meta: '60 guests · backyard, borrowed folding tables', year: '2025', image: G('outdoor-guests'), ratio: 'square', alt: 'Guests gathered outdoors in daylight' },
+  { cat: 'Weddings', tag: 'Wedding', title: 'Ceremony at Dusk', meta: '140 guests · a chapel by the lake', year: '2024', image: G('wedding-couple'), ratio: 'square', alt: 'Couple photographed on their wedding day' },
+  { cat: 'Entertainment', tag: 'Live Music', title: 'An Afternoon Concert by the Water', meta: '260 guests · permits, a stage, and a good weather call', year: '2025', image: G('outdoor-concert'), ratio: 'portrait', alt: 'Crowd at an outdoor concert' },
+  { cat: 'Birthdays', tag: 'Birthday', title: 'Seventy, Quietly', meta: '24 guests · a birthday dinner at home', year: '2026', image: G('crystal-glassware'), ratio: 'square', alt: 'Crystal glassware on a candlelit table' },
+  { cat: 'Social', tag: 'Social', title: 'The Graduation Lunch', meta: '48 guests · a rooftop patio, rented for the afternoon', year: '2025', image: G('two-guests'), ratio: 'portrait', alt: 'Two guests in conversation holding glasses' },
+  { cat: 'Nonprofit', tag: 'Auction', title: 'Paddles Up, Harbour House', meta: '220 guests · a fundraiser on the harbourfront', year: '2024', image: G('toast-auction'), ratio: 'portrait', alt: 'Guests raising glasses in a toast' },
+  { cat: 'Anniversaries', tag: 'Vow Renewal', title: 'Twenty-Five Years Later', meta: '70 guests · a vineyard an hour outside the city', year: '2026', image: G('reception-ballroom'), ratio: 'square', alt: 'Tables set in a softly lit room' },
 ]
 
 export const PORTFOLIO_STORIES = [
@@ -349,6 +356,20 @@ export const PORTFOLIO_STORIES = [
     ],
     quote: 'They treated our fundraising goal like a design constraint. That changed everything.',
     attribution: 'Priya Venkatesan — Executive Director',
+  },
+  {
+    index: '03',
+    title: 'Under the Mandap',
+    image: G('wedding-mandap'),
+    imageAlt: 'Couple seated at a floral mandap during their Hindu wedding ceremony',
+    imageRatio: 'square' as const,
+    imageFirst: true,
+    paragraphs: [
+      'Two hundred and sixty guests, three ceremonies, and two families who had never planned a wedding together before. The baraat needed a police-coordinated street closure, the mandap needed to clear an eighteen-foot ceiling for the phera fire, and the groom’s aunt had strong opinions about the marigold-to-rose ratio in the garlands.',
+      'We built the run of show around the priest’s ritual timing instead of the banquet hall’s dinner service clock — most of the delays we’ve seen at South Asian weddings come from forcing the ceremony to hit somebody else’s schedule. Cocktail hour moved by twenty minutes instead. Nobody noticed but us.',
+    ],
+    quote: 'They didn’t just show up with a binder. They knew what a phera was before we explained it.',
+    attribution: 'Simran K. — bride',
   },
 ]
 

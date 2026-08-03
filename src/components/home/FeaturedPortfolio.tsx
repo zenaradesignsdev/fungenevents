@@ -4,7 +4,7 @@ import { PortfolioCard } from '@/components/shared/PortfolioCard'
 import { PORTFOLIO_ITEMS } from '@/lib/site-data'
 
 export function FeaturedPortfolio() {
-  const featured = PORTFOLIO_ITEMS.slice(0, 6)
+  const featured = PORTFOLIO_ITEMS.slice(0, 9)
 
   return (
     <section className="bg-secondary px-5 py-[clamp(72px,11vw,160px)] sm:px-8 lg:px-16">
@@ -24,7 +24,7 @@ export function FeaturedPortfolio() {
           <ArrowLink href="/portfolio">Full portfolio</ArrowLink>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,290px),1fr))] gap-[clamp(14px,1.6vw,26px)]">
+        <div className="grid grid-cols-1 gap-[clamp(14px,1.6vw,26px)] md:grid-cols-3">
           {featured.map((item) => (
             <Reveal key={item.title}>
               <PortfolioCard

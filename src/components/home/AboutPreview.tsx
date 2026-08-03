@@ -67,14 +67,11 @@ export function AboutPreview() {
 
           <Reveal delay={0.22} className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-[clamp(24px,3vw,48px)] border-t border-brand/15">
             {STUDIO_PILLARS.map((pillar) => (
-              <div key={pillar.num} className="flex items-baseline gap-4 border-b border-brand/15 py-[22px]">
-                <span className="font-sans text-[10px] tracking-[0.2em] text-gold">{pillar.num}</span>
-                <div>
-                  <span className="block font-display text-[22px] leading-[1.3] text-brand">{pillar.title}</span>
-                  <span className="mt-1 block font-sans text-[13px] font-light leading-[1.7] text-foreground/65">
-                    {pillar.body}
-                  </span>
-                </div>
+              <div key={pillar.title} className="border-b border-brand/15 py-[22px]">
+                <span className="block font-display text-[22px] leading-[1.3] text-brand">{pillar.title}</span>
+                <span className="mt-1 block font-sans text-[13px] font-light leading-[1.7] text-foreground/65">
+                  {pillar.body}
+                </span>
               </div>
             ))}
           </Reveal>

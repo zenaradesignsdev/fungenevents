@@ -30,9 +30,9 @@ export function AboutManifesto() {
             delay={0.1}
             className="font-sans text-[15.5px] font-light leading-[1.95] text-foreground text-pretty"
           >
-            What started as favours for friends — a fortieth in a backyard, a fundraiser in a borrowed hall —
-            became a studio because word travelled. Clients kept saying the same thing: it felt like ours, and
-            nothing went wrong.
+            What started as favours for friends — a fortieth in a backyard, a sangeet in a rented hall, a
+            fundraiser in a borrowed one — became a studio because word travelled. Clients kept saying the same
+            thing: it felt like ours, and nothing went wrong.
           </Reveal>
           <Reveal
             as="p"
