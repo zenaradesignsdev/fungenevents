@@ -53,10 +53,14 @@
     @apply bg-background font-sans text-foreground antialiased;
   }
 
-  /* Backstop against horizontal scroll from decorative bleeds / vw units. */
+  /* Backstop against horizontal scroll from decorative bleeds / vw units.
+     `clip` rather than `hidden` on purpose: `hidden` makes the root a scroll
+     container, which silently disables `position: sticky` for every descendant
+     (it broke the portfolio filter bar). `clip` blocks the same overflow
+     without creating one. */
   html,
   body {
-    @apply overflow-x-hidden;
+    @apply overflow-x-clip;
   }
 
   /* Brand text selection */

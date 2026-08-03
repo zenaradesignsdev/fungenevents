@@ -31,6 +31,11 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
   // Cream text only while sitting over the dark hero, before the bar frosts.
   const lightText = theme === 'light' && !scrolled
 
+  // The open mobile menu paints a navy sheet behind the bar, so the wordmark,
+  // mark and toggle all have to read as if they were over the dark hero —
+  // regardless of scroll position or page theme.
+  const onDark = lightText || open
+
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -56,18 +61,23 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
 
   // Cream over the dark hero; the deeper gold gradient once the bar frosts,
   // since the logo's own highlight washes out against the warm-white bar.
-  const markSrc = lightText ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold-deep.svg'
+  const markSrc = onDark ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold-deep.svg'
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-[200] px-5 pb-[clamp(14px,2vw,26px)] pt-[calc(env(safe-area-inset-top)+clamp(14px,2vw,26px))] sm:px-8 lg:px-16">
       <div
         className={cn(
-          'pointer-events-auto mx-auto flex max-w-[1560px] items-center justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(.32,.72,0,1)]',
-          scrolled
+          // z-index sits above the mobile overlay below, which is a sibling in
+          // this same stacking context — without it the sheet paints over the
+          // bar and the close toggle becomes unreachable.
+          'pointer-events-auto relative z-[210] mx-auto flex max-w-[1560px] items-center justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(.32,.72,0,1)]',
+          scrolled && !open
             // Pill bar to match the buttons. Inline padding only widens once
             // there is room for it — the curved ends eat horizontal space
             // exactly where the desktop links first appear.
             ? 'rounded-full border border-brand/10 bg-background/80 px-5 py-2.5 shadow-[0_26px_60px_-34px_rgba(19,30,46,.34)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 min-[1150px]:px-8'
+            // Frosting is dropped while the menu is open so the bar reads as
+            // part of the navy sheet rather than a cream pill floating on it.
             : 'border border-transparent px-0 py-2.5',
         )}
       >
@@ -75,8 +85,10 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
         <Link
           href="/"
           className={cn(
-            'flex items-center gap-2.5 transition-colors duration-500',
-            lightText ? 'text-brand-foreground' : 'text-brand',
+            // py lifts the 38px mark to a 44px tap target without changing the
+            // bar height — the toggle and desktop CTA are already 44px+.
+            'flex items-center gap-2.5 py-[3px] transition-colors duration-500',
+            onDark ? 'text-brand-foreground' : 'text-brand',
           )}
           aria-label="FunGen Events & Experiences — home"
         >
@@ -89,7 +101,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
               // Hidden through the 900-1150px band, where the desktop links
               // and the CTA leave the tagline no room to sit on one line.
               'hidden whitespace-nowrap pb-0.5 font-sans text-[9px] font-light uppercase tracking-[0.34em] transition-colors duration-500 sm:inline min-[900px]:hidden min-[1150px]:inline',
-              lightText ? 'text-brand-foreground/60' : 'text-brand/50',
+              onDark ? 'text-brand-foreground/60' : 'text-brand/50',
             )}
           >
             Events &amp; Experiences
@@ -145,19 +157,22 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           <span
             className={cn(
               'block h-px w-6 origin-center transition-all duration-500',
-              open ? 'translate-y-[7px] rotate-45 bg-brand-foreground' : lightText ? 'bg-brand-foreground' : 'bg-brand',
+              onDark ? 'bg-brand-foreground' : 'bg-brand',
+              open && 'translate-y-[7px] rotate-45',
             )}
           />
           <span
             className={cn(
               'block h-px w-4 transition-all duration-300',
-              open ? 'opacity-0' : lightText ? 'bg-brand-foreground' : 'bg-brand',
+              onDark ? 'bg-brand-foreground' : 'bg-brand',
+              open && 'opacity-0',
             )}
           />
           <span
             className={cn(
               'block h-px w-6 origin-center transition-all duration-500',
-              open ? '-translate-y-[7px] -rotate-45 bg-brand-foreground' : lightText ? 'bg-brand-foreground' : 'bg-brand',
+              onDark ? 'bg-brand-foreground' : 'bg-brand',
+              open && '-translate-y-[7px] -rotate-45',
             )}
           />
         </button>
@@ -179,7 +194,10 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
               alt=""
               width={47}
               height={52}
-              className="mb-6 h-[52px] w-auto"
+              // self-start stops the flex column stretching the img box to the
+              // full sheet width, which letterboxed the mark into looking
+              // centred while every other item is left-aligned.
+              className="mb-6 h-[52px] w-auto self-start"
             />
             <span className="mb-8 font-sans text-[9px] uppercase tracking-[0.4em] text-brand-foreground/45">
               Menu

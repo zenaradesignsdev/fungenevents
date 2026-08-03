@@ -39,7 +39,9 @@ export default function ServicesPage() {
               <Link
                 key={service.id}
                 href={`#${service.id}`}
-                className="flex items-baseline gap-2.5 py-2 font-sans text-[11px] uppercase tracking-[0.24em] text-brand-foreground/80 transition-colors duration-300 hover:text-gold"
+                // Roomier tap area up to lg:, where pointers take over and the
+                // original spacing keeps the hero at its designed height.
+                className="flex items-baseline gap-2.5 py-[14px] font-sans text-[11px] uppercase tracking-[0.24em] text-brand-foreground/80 transition-colors duration-300 hover:text-gold lg:py-2"
               >
                 <span className="text-[9px] text-gold">{service.num}</span>
                 {service.title}

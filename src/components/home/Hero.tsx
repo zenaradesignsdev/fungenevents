@@ -8,9 +8,9 @@ import { HERO_META, HERO_HIGHLIGHTS } from '@/lib/site-data'
 const EASE = [0.32, 0.72, 0, 1] as const
 
 const HEADLINE_LINES = [
-  { text: 'Unforgettable', italic: false },
-  { text: 'events, beautifully', italic: false },
-  { text: 'planned.', italic: true },
+  { text: 'Every detail,', italic: false },
+  { text: 'so you can just', italic: false },
+  { text: 'arrive.', italic: true },
 ]
 
 export function Hero() {
@@ -90,7 +90,7 @@ export function Hero() {
               </Link>
               <Link
                 href="/portfolio"
-                className="group inline-flex items-center gap-3 border-b border-gold/85 py-2 pb-2 font-sans text-[10.5px] uppercase tracking-[0.26em] text-brand-foreground/85 transition-colors duration-700 hover:border-gold hover:text-gold"
+                className="group relative inline-flex items-center gap-3 border-b border-gold/85 py-2 font-sans text-[10.5px] uppercase tracking-[0.26em] text-brand-foreground/85 transition-colors duration-700 after:absolute after:inset-x-0 after:-top-1 after:-bottom-1 after:content-[''] hover:border-gold hover:text-gold"
               >
                 Recent events{' '}
                 <span aria-hidden="true" className="font-display text-[15px] transition-transform duration-700 group-hover:translate-x-1">
@@ -133,16 +133,14 @@ export function Hero() {
                     className="object-cover motion-safe:animate-kenburns"
                   />
                 </div>
-                <div className="flex flex-col justify-center gap-2.5 overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(250,248,245,.07),rgba(250,248,245,.02))] p-[clamp(16px,1.6vw,22px)] ring-2 ring-gold/50">
-                  <span className="font-display text-[clamp(14px,1.1vw,17px)] italic leading-[1.45] text-brand-foreground/95 text-pretty">
-                    “{HERO_HIGHLIGHTS.quote.text}”
-                  </span>
-                  <span className="flex items-center gap-2.5">
-                    <span className="block h-px w-4 bg-gold" />
-                    <span className="font-sans text-[8.5px] uppercase tracking-[0.24em] text-brand-foreground/60">
-                      {HERO_HIGHLIGHTS.quote.author}
-                    </span>
-                  </span>
+                <div className="relative overflow-hidden rounded-lg bg-[#0B131F] ring-2 ring-gold/50">
+                  <Image
+                    src={HERO_HIGHLIGHTS.tertiary.image}
+                    alt={HERO_HIGHLIGHTS.tertiary.alt}
+                    fill
+                    sizes="20vw"
+                    className="object-cover motion-safe:animate-kenburns"
+                  />
                 </div>
               </div>
             </div>

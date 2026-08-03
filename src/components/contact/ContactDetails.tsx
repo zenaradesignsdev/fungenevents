@@ -7,7 +7,9 @@ const fullAddress = `${address.streetAddress}, ${address.addressLocality} ${addr
 const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`
 
 const valueClass = 'font-sans text-[15px] font-light leading-[1.8] text-foreground text-pretty'
-const linkClass = `${valueClass} underline-offset-4 transition-colors duration-300 hover:text-gold`
+// The ::after grows the tap area to 44px inside the 56px row without shifting
+// the baseline the label column is aligned to.
+const linkClass = `${valueClass} relative underline-offset-4 transition-colors duration-300 after:absolute after:inset-x-0 after:-top-4 after:-bottom-4 after:content-[''] hover:text-gold`
 
 const DETAILS: { label: string; value: React.ReactNode }[] = [
   {

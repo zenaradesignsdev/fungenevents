@@ -139,7 +139,9 @@ export function ContactForm() {
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Budget range</span>
-          <select className={cn(fieldClass, 'rounded-none')} {...register('budget')}>
+          {/* min-h matches the text inputs' 45px — a bare select renders 40px,
+              under the 44px touch minimum. */}
+          <select className={cn(fieldClass, 'min-h-[45px] rounded-none')} {...register('budget')}>
             {BUDGET_RANGES.map((range) => (
               <option key={range.value} value={range.value}>
                 {range.label}

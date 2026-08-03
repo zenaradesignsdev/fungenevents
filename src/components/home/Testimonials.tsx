@@ -62,7 +62,7 @@ export function Testimonials() {
                 onClick={() => setIndex(i)}
                 aria-label={`Show testimonial ${i + 1}`}
                 aria-current={i === index}
-                className="flex items-center gap-2.5 px-1 py-3"
+                className="flex items-center gap-2.5 px-1 py-[15px]"
               >
                 <span
                   className={cn(

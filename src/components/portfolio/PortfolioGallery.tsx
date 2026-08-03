@@ -19,7 +19,11 @@ export function PortfolioGallery() {
     <section className="bg-background px-5 pb-[clamp(70px,10vw,140px)] sm:px-8 lg:px-16">
       <div className="mx-auto max-w-[1560px]">
         {/* Filter bar */}
-        <div className="no-scrollbar sticky top-[74px] z-50 mb-[clamp(26px,3vw,44px)] flex flex-nowrap gap-x-[clamp(16px,2.4vw,36px)] overflow-x-auto border-y border-brand/15 bg-background/95 backdrop-blur-md sm:flex-wrap sm:overflow-x-visible">
+        {/* Below sm: this is a horizontal scroller — the mask fades the right
+            edge so the run of filters reads as continuing rather than clipped.
+            From sm: up it wraps, so both the mask and the offset are dropped.
+            The sticky offset adds the notch inset, which is 0 elsewhere. */}
+        <div className="no-scrollbar sticky top-[calc(env(safe-area-inset-top)+74px)] z-50 mb-[clamp(26px,3vw,44px)] flex flex-nowrap gap-x-[clamp(16px,2.4vw,36px)] overflow-x-auto border-y border-brand/15 bg-background/95 backdrop-blur-md [mask-image:linear-gradient(to_right,#000_calc(100%-32px),transparent)] sm:flex-wrap sm:overflow-x-visible sm:[mask-image:none]">
           {PORTFOLIO_CATS.map((c) => {
             const active = c === cat
             return (

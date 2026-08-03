@@ -3,8 +3,12 @@ import { Image } from '@/components/ui/image'
 import { NAV_LINKS, SERVICES, SOCIAL_LINKS } from '@/lib/site-data'
 import { businessInfo } from '@/lib/metadata'
 
+// py on mobile only lifts the 20px text to a 44px tap target; from sm: up the
+// padding is dropped and the column gap below restores the original rhythm.
 const linkClass =
-  'font-sans text-[13px] font-light tracking-[0.05em] text-brand-foreground/80 transition-colors duration-300 hover:text-gold'
+  'py-3 font-sans text-[13px] font-light tracking-[0.05em] text-brand-foreground/80 transition-colors duration-300 hover:text-gold sm:py-0'
+
+const linkColumnClass = 'flex flex-col sm:gap-3.5'
 
 const headingClass =
   'mb-6 block font-sans text-[9px] uppercase tracking-[0.36em] text-gold'
@@ -27,14 +31,14 @@ export function SiteFooter() {
               <span className="font-display text-3xl uppercase tracking-[0.14em]">FunGen</span>
             </div>
             <p className="max-w-[26ch] font-display text-xl font-normal italic leading-[1.6] text-brand-foreground/70 text-pretty">
-              Creating extraordinary moments, one celebration at a time.
+              We plan the night so you can be a guest at it.
             </p>
           </div>
 
           {/* Navigate */}
           <div>
             <span className={headingClass}>Navigate</span>
-            <div className="flex flex-col gap-3.5">
+            <div className={linkColumnClass}>
               {NAV_LINKS.map((link) => (
                 <Link key={link.href} href={link.href} className={linkClass}>
                   {link.label}
@@ -46,7 +50,7 @@ export function SiteFooter() {
           {/* Disciplines */}
           <div>
             <span className={headingClass}>Disciplines</span>
-            <div className="flex flex-col gap-3.5">
+            <div className={linkColumnClass}>
               {SERVICES.map((service) => (
                 <Link key={service.id} href={`/services#${service.id}`} className={linkClass}>
                   {service.title}
@@ -59,10 +63,16 @@ export function SiteFooter() {
           <div>
             <span className={headingClass}>Studio</span>
             <address className="flex flex-col gap-4 font-sans text-[13px] font-light not-italic leading-[1.7] text-brand-foreground/80">
-              <a href={`tel:${businessInfo.telephone}`} className="transition-colors duration-300 hover:text-gold">
+              <a
+                href={`tel:${businessInfo.telephone}`}
+                className="py-[11px] transition-colors duration-300 hover:text-gold sm:py-0"
+              >
                 {businessInfo.telephoneDisplay}
               </a>
-              <a href={`mailto:${businessInfo.email}`} className="transition-colors duration-300 hover:text-gold">
+              <a
+                href={`mailto:${businessInfo.email}`}
+                className="py-[11px] transition-colors duration-300 hover:text-gold sm:py-0"
+              >
                 {businessInfo.email}
               </a>
               <span>
@@ -84,12 +94,14 @@ export function SiteFooter() {
 
         <div className="flex flex-wrap items-center justify-between gap-5 font-sans text-[10.5px] font-light uppercase tracking-[0.2em] text-brand-foreground/45">
           <span>© {new Date().getFullYear()} FunGen Events &amp; Experiences</span>
-          <div className="flex gap-6">
+          {/* flex-wrap is load-bearing: the four labels measure ~371px and
+              overflowed the 335px container at every phone width. */}
+          <div className="flex flex-wrap gap-x-6 gap-y-1">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
-                className="tracking-[0.2em] text-brand-foreground/60 transition-colors duration-300 hover:text-gold"
+                className="py-3.5 tracking-[0.2em] text-brand-foreground/60 transition-colors duration-300 hover:text-gold sm:py-0"
               >
                 {social.label}
               </a>
