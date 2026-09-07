@@ -59,6 +59,8 @@ const config: Config = {
           DEFAULT: 'hsl(var(--gold))',
           foreground: 'hsl(var(--gold-foreground))',
         },
+        // Text-on-light only — see the note in globals.css.
+        'gold-ink': 'hsl(var(--gold-ink))',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -28,7 +28,7 @@ export function WhyChooseUs() {
               key={reason.num}
               className="flex flex-col gap-[18px] bg-background p-[clamp(28px,3.4vw,48px)] transition-colors duration-500 hover:bg-secondary"
             >
-              <span className="font-display text-[44px] leading-none text-gold/55">{reason.num}</span>
+              <span className="font-display text-[44px] leading-none text-gold-ink/80">{reason.num}</span>
               <span className="font-display text-[clamp(22px,2vw,28px)] leading-[1.25] text-brand">
                 {reason.title}
               </span>

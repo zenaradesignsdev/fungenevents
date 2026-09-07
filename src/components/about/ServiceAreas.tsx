@@ -15,7 +15,7 @@ export function ServiceAreas() {
           {/* Intro */}
           <div>
             <Reveal>
-              <Eyebrow rule>Service area</Eyebrow>
+              <Eyebrow rule tone="light">Service area</Eyebrow>
             </Reveal>
             <Reveal
               as="h2"

@@ -29,7 +29,7 @@ export default function HomePage() {
       />
       <GrainOverlay />
       <SiteNav theme="light" />
-      <main>
+      <main id="main">
         <Hero />
         <DisciplineMarquee />
         <AboutPreview />

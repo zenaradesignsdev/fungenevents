@@ -22,7 +22,7 @@ export default function ServicesPage() {
     <>
       <GrainOverlay />
       <SiteNav theme="light" />
-      <main>
+      <main id="main">
         <ImageHero
           image="/images/gallery/candlelit-tablescape.jpg"
           imageAlt="Candlelit table with floral centerpiece"

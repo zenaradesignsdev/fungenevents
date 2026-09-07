@@ -46,7 +46,7 @@ export function Process() {
               </span>
 
               <div className="pb-1 lg:pb-0">
-                <span className="mb-3.5 block font-sans text-[10px] uppercase tracking-[0.28em] text-gold">
+                <span className="mb-3.5 block font-sans text-[10px] uppercase tracking-[0.28em] text-gold-ink">
                   {step.when}
                 </span>
                 <h3 className="mb-3 font-display text-[clamp(22px,2vw,29px)] font-normal leading-[1.22] text-brand">

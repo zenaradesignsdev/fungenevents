@@ -9,7 +9,7 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 const valueClass = 'font-sans text-[15px] font-light leading-[1.8] text-foreground text-pretty'
 // The ::after grows the tap area to 44px inside the 56px row without shifting
 // the baseline the label column is aligned to.
-const linkClass = `${valueClass} relative underline-offset-4 transition-colors duration-300 after:absolute after:inset-x-0 after:-top-4 after:-bottom-4 after:content-[''] hover:text-gold`
+const linkClass = `${valueClass} relative underline-offset-4 transition-colors duration-300 after:absolute after:inset-x-0 after:-top-4 after:-bottom-4 after:content-[''] hover:text-gold-ink`
 
 const DETAILS: { label: string; value: React.ReactNode }[] = [
   {
@@ -48,7 +48,7 @@ export function ContactDetails() {
             key={detail.label}
             className="grid grid-cols-[minmax(96px,26%)_1fr] items-baseline gap-[18px] border-b border-brand/10 py-5"
           >
-            <span className="font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold">{detail.label}</span>
+            <span className="font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold-ink">{detail.label}</span>
             <span className={valueClass}>{detail.value}</span>
           </div>
         ))}
@@ -56,7 +56,7 @@ export function ContactDetails() {
 
       {/* Map placeholder */}
       <div>
-        <span className="mb-4 block font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold">
+        <span className="mb-4 block font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold-ink">
           Studio &amp; service area
         </span>
         <a
@@ -93,7 +93,7 @@ export function ContactDetails() {
 
       {/* Socials */}
       <div>
-        <span className="mb-4 block font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold">
+        <span className="mb-4 block font-sans text-[9.5px] uppercase tracking-[0.28em] text-gold-ink">
           Follow the work
         </span>
         <div className="flex flex-wrap gap-2.5">

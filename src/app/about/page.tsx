@@ -25,7 +25,7 @@ export default function AboutPage() {
     <>
       <GrainOverlay />
       <SiteNav theme="light" />
-      <main>
+      <main id="main">
         <ImageHero
           image="/images/gallery/two-guests.jpg"
           imageAlt="Two guests in conversation at an evening event"

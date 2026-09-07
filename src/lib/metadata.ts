@@ -42,7 +42,9 @@ export function getLocalBusinessJsonLd() {
     telephone: businessInfo.telephone,
     email: businessInfo.email,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
-    priceRange: '$$$',
+    // Matches the budget ranges the enquiry form actually offers (from under
+    // $2,500). '$$$' read as luxury, which is the positioning the copy moved away from.
+    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       ...businessInfo.address,

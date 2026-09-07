@@ -118,7 +118,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
                 href={link.href}
                 className={cn(
                   'relative block py-1.5 font-sans text-[10.5px] uppercase tracking-[0.26em] transition-colors duration-300 hover:text-gold',
-                  active ? 'text-gold' : lightText ? 'text-brand-foreground' : 'text-brand',
+                  active ? (lightText ? 'text-gold' : 'text-gold-ink') : lightText ? 'text-brand-foreground' : 'text-brand',
                 )}
               >
                 {link.label}

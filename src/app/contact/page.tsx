@@ -29,12 +29,12 @@ export default function ContactPage() {
     <>
       <GrainOverlay />
       <SiteNav theme="dark" />
-      <main>
+      <main id="main">
         <PageIntroHero
           eyebrow="Contact"
           title={
             <>
-              Tell us about the <em className="italic text-gold">day</em> you&apos;re imagining.
+              Tell us about the <em className="italic text-gold-ink">day</em> you&apos;re imagining.
             </>
           }
           description="Consultations are free and take about thirty minutes. Bring a date, a rough guest count and a budget, and we will ask the rest."

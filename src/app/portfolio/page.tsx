@@ -22,12 +22,12 @@ export default function PortfolioPage() {
     <>
       <GrainOverlay />
       <SiteNav theme="dark" />
-      <main>
+      <main id="main">
         <PageIntroHero
           eyebrow="Portfolio"
           title={
             <>
-              Rooms that meant something to <em className="italic text-gold">someone</em>.
+              Rooms that meant something to <em className="italic text-gold-ink">someone</em>.
             </>
           }
           description="Every event here started as a conversation about people, not palettes. Filter by type, or read three of the stories in full below."

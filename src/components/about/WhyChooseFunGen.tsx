@@ -26,7 +26,7 @@ export function WhyChooseFunGen() {
 
         {/* Copy */}
         <div>
-          <Reveal as="span" className="mb-[22px] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold">
+          <Reveal as="span" className="mb-[22px] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold-ink">
             Why clients choose us
           </Reveal>
           <Reveal

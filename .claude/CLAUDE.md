@@ -45,7 +45,19 @@ transform makes input and output types diverge and the react-hook-form resolver 
 reconcile them. `budget` and `eventType` are enums matching the UI's own options, so the
 route will not forward arbitrary strings into the studio's inbox.
 
-Known follow-up: 3 high-severity `sharp`/libvips CVEs remain; the fix is a breaking
+Accessibility baseline (verified in a real browser against the production build, all
+five pages): one `h1` per page, `<main id="main">` on every page with a visually-hidden
+skip link in the root layout, contact-form errors wired with `aria-invalid` /
+`aria-describedby` / `role="alert"`, the event-type chips exposed as a `radiogroup`, and
+no gold text below its WCAG AA threshold. `html lang="en-CA"` matches `siteConfig.locale`.
+
+Known follow-up: 4 high-severity advisories remain (`sharp`/libvips plus a transitive
+`postcss` one via Next). Both need a breaking Next 16 bump. Exposure is low and was
+checked, not assumed: `postcss` is a devDependency (build-time only), and `sharp` only
+ever processes local `/public` images — `remotePatterns` is empty and the app ingests no
+uploads, so no attacker-supplied bytes reach either.
+
+Older note: 3 high-severity `sharp`/libvips CVEs remain; the fix is a breaking
 `sharp` bump best done via a Next.js upgrade (deferred — the site only processes trusted
 local images). Still add a real Google Maps embed on `/contact` (currently a Maps link).
 
@@ -71,8 +83,26 @@ Set in `src/app/globals.css` (also mapped into `tailwind.config.ts`):
 | `--background` | `#FAF8F5` Warm White | `36 33% 97%` | Page background |
 | `--secondary` / `--accent` / `--muted` | `#F2F2F2` Soft Gray | `0 0% 95%` | Tags, subtle fills |
 | `--foreground` | `#333333` Charcoal | `0 0% 20%` | Body text |
+| `--gold-ink` | `#846B1A` Gold, darkened | `46 67% 31%` | **Gold TEXT on light only** |
 
 These are final client brand colours (not placeholders) — confirmed 2026-07-26.
+
+`--gold-ink` is not a brand colour, it is an accessibility companion to `--gold`.
+The brand gold is only 2.26:1 on `--background` and on `--secondary`, well under the
+4.5:1 WCAG AA floor, and it is used for real labels (PHONE, EMAIL, section kickers),
+not decoration. `--gold-ink` is the same hue darkened until it clears AA on both
+(4.83:1 / 4.58:1). The split:
+
+- **Gold text on a dark section** (navy, brand-dark, over a scrimmed photo) → `text-gold`,
+  already 5.97:1. Using `gold-ink` there would be *worse* (2.96:1 on navy).
+- **Gold text on a light section** → `text-gold-ink`.
+- **Rules, fills, borders, buttons, the logo marks** → always `--gold`. Non-text, and
+  the logo is exempt from contrast rules anyway.
+- `Eyebrow`'s `tone` prop drives this: default (`dark`) is gold-ink for light sections,
+  `tone="light"` is brand gold for dark ones. `SiteNav`'s active link switches on
+  `lightText`, since the bar is transparent over the hero and warm-white once scrolled.
+- The two decorative numeral sets (`CoreValues`, `WhyChooseUs`) were `text-gold/55`
+  (1.55:1); they are `text-gold-ink/80` now, which clears the 3.0 large-text bar.
 Typography and full layout are still pending the finalized Claude design.
 
 ---
@@ -102,7 +132,9 @@ keep the build warning-free.
   featured portfolio, testimonials carousel, CTA band
 - [x] About (`/about`) — manifesto, mission/vision, core values, process, why-choose, CTA
 - [x] Services (`/services`) — 6 discipline sections with included/options + FAQ accordions
-- [x] Portfolio (`/portfolio`) — filterable gallery + client stories
+- [x] Portfolio (`/portfolio`) — gallery + client stories (the category filter was
+      deliberately removed: with this few projects each filter returned one or two
+      results and made the work look thinner than it is)
 - [x] Contact (`/contact`) — enquiry form (Resend) + details + Maps link
 
 ---

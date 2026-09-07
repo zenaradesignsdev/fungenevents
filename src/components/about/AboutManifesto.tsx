@@ -29,7 +29,7 @@ export function AboutManifesto() {
         >
           FunGen Events &amp; Experiences began with a simple idea: a party should feel like the people it
           belongs to, not like something the venue sells by the plate. It should feel{' '}
-          <em className="italic text-gold">like them.</em>
+          <em className="italic text-gold-ink">like them.</em>
         </Reveal>
         <div className="mt-[clamp(40px,5vw,72px)] grid grid-cols-1 items-start gap-[clamp(32px,4vw,80px)] border-t border-brand/15 pt-[clamp(34px,4vw,54px)] lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
           {/* Lead copy, held to a single comfortable measure. */}
@@ -63,7 +63,7 @@ export function AboutManifesto() {
                 key={fact.label}
                 className="flex flex-col gap-1.5 border-b border-brand/15 py-[15px] first:border-t first:border-gold/50"
               >
-                <span className="font-sans text-[9.5px] uppercase tracking-[0.3em] text-gold">
+                <span className="font-sans text-[9.5px] uppercase tracking-[0.3em] text-gold-ink">
                   {fact.label}
                 </span>
                 <span className="font-display text-[clamp(17px,1.5vw,21px)] leading-[1.35] text-brand">

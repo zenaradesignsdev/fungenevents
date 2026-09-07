@@ -50,7 +50,7 @@ export function ContactForm() {
 
   if (submittedName) {
     return (
-      <div className="border border-gold/60 bg-secondary p-[clamp(34px,4vw,58px)]">
+      <div role="status" aria-live="polite" className="border border-gold/60 bg-secondary p-[clamp(34px,4vw,58px)]">
         <span className="mb-[26px] block h-11 w-px bg-gold" />
         <h2 className="mb-[18px] font-display text-[clamp(26px,3vw,42px)] font-normal leading-[1.15] text-brand">
           Thank you. Your enquiry is with us.
@@ -61,7 +61,7 @@ export function ContactForm() {
         </p>
         <a
           href={`tel:${businessInfo.telephone}`}
-          className="border-b border-gold pb-2 font-sans text-[11px] uppercase tracking-[0.26em] text-brand transition-colors duration-300 hover:text-gold"
+          className="border-b border-gold pb-2 font-sans text-[11px] uppercase tracking-[0.26em] text-brand transition-colors duration-300 hover:text-gold-ink"
         >
           Call {businessInfo.telephoneDisplay}
         </a>
@@ -71,7 +71,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <span className="mb-[clamp(26px,3vw,40px)] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold">
+      <span className="mb-[clamp(26px,3vw,40px)] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold-ink">
         Enquiry form
       </span>
 
@@ -88,13 +88,37 @@ export function ContactForm() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[clamp(22px,2.6vw,38px)]">
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Your name *</span>
-          <input type="text" autoComplete="name" placeholder="First and last" className={fieldClass} {...register('name')} />
-          {errors.name && <span className="font-sans text-xs text-destructive">{errors.name.message}</span>}
+          <input
+            type="text"
+            autoComplete="name"
+            placeholder="First and last"
+            className={fieldClass}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
+            {...register('name')}
+          />
+          {errors.name && (
+            <span id="name-error" role="alert" className="font-sans text-xs text-destructive">
+              {errors.name.message}
+            </span>
+          )}
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Email *</span>
-          <input type="email" autoComplete="email" placeholder="you@example.com" className={fieldClass} {...register('email')} />
-          {errors.email && <span className="font-sans text-xs text-destructive">{errors.email.message}</span>}
+          <input
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            className={fieldClass}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+            {...register('email')}
+          />
+          {errors.email && (
+            <span id="email-error" role="alert" className="font-sans text-xs text-destructive">
+              {errors.email.message}
+            </span>
+          )}
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Phone</span>
@@ -106,17 +130,29 @@ export function ContactForm() {
         </label>
       </div>
 
-      {/* Event type chips */}
-      <span className="mb-4 mt-[clamp(30px,3.6vw,48px)] block font-sans text-[9.5px] uppercase tracking-[0.28em] text-brand/60">
+      {/* Event type chips. Buttons rather than inputs, so the grouping and the
+          selected state have to be announced explicitly. */}
+      <span
+        id="event-type-label"
+        className="mb-4 mt-[clamp(30px,3.6vw,48px)] block font-sans text-[9.5px] uppercase tracking-[0.28em] text-brand/60"
+      >
         Type of event *
       </span>
-      <div className="flex flex-wrap gap-2.5">
+      <div
+        role="radiogroup"
+        aria-labelledby="event-type-label"
+        aria-invalid={!!errors.eventType}
+        aria-describedby={errors.eventType ? 'event-type-error' : undefined}
+        className="flex flex-wrap gap-2.5"
+      >
         {EVENT_TYPES.map((type) => {
           const active = selectedType === type
           return (
             <button
               key={type}
               type="button"
+              role="radio"
+              aria-checked={active}
               onClick={() => setValue('eventType', type, { shouldValidate: true })}
               className={cn(
                 'rounded-full border px-5 py-3.5 font-sans text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-300',
@@ -129,7 +165,9 @@ export function ContactForm() {
         })}
       </div>
       {errors.eventType && (
-        <span className="mt-2 block font-sans text-xs text-destructive">{errors.eventType.message}</span>
+        <span id="event-type-error" role="alert" className="mt-2 block font-sans text-xs text-destructive">
+          {errors.eventType.message}
+        </span>
       )}
 
       <div className="mt-[clamp(30px,3.6vw,48px)] grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[clamp(22px,2.6vw,38px)]">

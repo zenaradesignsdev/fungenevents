@@ -19,8 +19,10 @@ export function Eyebrow({ children, rule = false, tone = 'dark', className }: Ey
       {rule && <span className="block h-px w-8 shrink-0 bg-gold sm:w-9" aria-hidden="true" />}
       <span
         className={cn(
-          'font-sans text-[10px] font-normal uppercase leading-none tracking-[0.34em] text-gold',
-          tone === 'light' && 'text-gold',
+          'font-sans text-[10px] font-normal uppercase leading-none tracking-[0.34em]',
+          // Both branches used to be text-gold, so `tone` changed nothing. The
+          // brand gold only clears AA on the dark sections.
+          tone === 'light' ? 'text-gold' : 'text-gold-ink',
         )}
       >
         {children}

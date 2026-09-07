@@ -42,7 +42,7 @@ export function CoreValues() {
               delay={i * 0.05}
               className="group flex flex-col gap-[15px] bg-background p-[clamp(26px,2.8vw,44px)] transition-colors duration-500 hover:bg-secondary"
             >
-              <span className="font-display text-[clamp(34px,3.4vw,48px)] leading-none text-gold/55 transition-colors duration-500 group-hover:text-gold">
+              <span className="font-display text-[clamp(34px,3.4vw,48px)] leading-none text-gold-ink/80 transition-colors duration-500 group-hover:text-gold">
                 {value.num}
               </span>
               <h3 className="font-display text-[clamp(22px,2vw,29px)] font-normal leading-[1.25] text-brand">

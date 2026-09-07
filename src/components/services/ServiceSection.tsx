@@ -55,7 +55,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
 
           {/* Copy */}
           <div className={cn(reversed ? 'lg:order-1' : 'lg:order-2')}>
-            <Reveal as="span" className="mb-[18px] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold">
+            <Reveal as="span" className="mb-[18px] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold-ink">
               {service.kicker}
             </Reveal>
             <Reveal
@@ -105,7 +105,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                     key={item}
                     className="flex items-baseline gap-3 border-b border-brand/10 py-2.5 font-sans text-sm font-light leading-[1.65] text-foreground/80"
                   >
-                    <span className="font-display text-[15px] leading-none text-gold">+</span>
+                    <span className="font-display text-[15px] leading-none text-gold-ink">+</span>
                     {item}
                   </span>
                 ))}
@@ -130,7 +130,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                       {faq.q}
                       <span
                         className={cn(
-                          'shrink-0 font-sans text-base leading-tight text-gold transition-transform duration-500 ease-[cubic-bezier(.32,.72,0,1)]',
+                          'shrink-0 font-sans text-base leading-tight text-gold-ink transition-transform duration-500 ease-[cubic-bezier(.32,.72,0,1)]',
                           isOpen && 'rotate-45',
                         )}
                       >
