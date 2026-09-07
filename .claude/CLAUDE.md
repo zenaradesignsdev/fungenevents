@@ -12,7 +12,8 @@
 - **Website**: fungenevents.ca — real domain, confirmed 2026-07-27
 - **Phone**: (647) 926-9787 — real, confirmed 2026-07-27
 - **Address**: Unit 312/5, 2855 Markham Road, Toronto, ON M1X 0C3 — real, confirmed 2026-07-27
-- **Email**: still a placeholder (`hello@fungenevents.ca` in `HomeLanding.tsx`) — replace once the client provides a real one
+- **Email**: `fungeneventsinc@gmail.com` — real, confirmed 2026-09-07. Lives in `businessInfo`
+  (`src/lib/metadata.ts`); every display site and the JSON-LD read from there.
 
 ---
 
@@ -114,9 +115,10 @@ keep the build warning-free.
   deliberate choice (the copy was rewritten 2026-09-04 to remove 56 of them); prefer
   commas, periods and colons.
 - All copy/imagery centralised in `src/lib/site-data.ts`.
-- Real phone/address/email in `src/lib/metadata.ts` → `businessInfo` (email
-  `hello@fungenevents.ca` is still a placeholder pending the client). Emitted as
+- Real phone/address/email in `src/lib/metadata.ts` → `businessInfo`. Emitted as
   `LocalBusiness` JSON-LD (with `areaServed`) on the homepage in `src/app/page.tsx`.
+  The email is a gmail.com address, so it works as `CONTACT_TO_EMAIL` but can never
+  be `CONTACT_FROM_EMAIL` — Resend sends only from domains you have verified.
 
 ---
 

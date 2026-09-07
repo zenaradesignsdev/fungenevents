@@ -14,12 +14,15 @@ export const siteConfig = {
   locale: 'en_CA',
 } as const
 
-// Real business contact details — email is still a placeholder pending the client.
+// Real business contact details, all confirmed with the client.
 export const businessInfo = {
   telephone: '+16479269787',
   telephoneDisplay: '(647) 926-9787',
-  // Placeholder — replace with FunGen's real inbox once provided.
-  email: 'hello@fungenevents.ca',
+  // The studio's real inbox, confirmed 2026-09-07. This is the address shown on
+  // the site and emitted in JSON-LD; it is also where the contact form delivers
+  // (CONTACT_TO_EMAIL). It is NOT a valid CONTACT_FROM_EMAIL — Resend can only
+  // send from a domain you have verified, and nobody can verify gmail.com.
+  email: 'fungeneventsinc@gmail.com',
   address: {
     streetAddress: 'Unit 312/5, 2855 Markham Road',
     addressLocality: 'Toronto',
