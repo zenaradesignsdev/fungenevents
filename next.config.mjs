@@ -58,6 +58,11 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Optimized images are addressed by source path, not a content hash, so this
+    // is the window a swapped-out photo takes to reach visitors who already have
+    // the old one. 30 days trades that against Next's 60s default, which made
+    // every image revalidate a minute into a repeat visit.
+    minimumCacheTTL: 2592000,
     // Add per-client remote domains here:
     // remotePatterns: [{ protocol: 'https', hostname: 'example.com' }],
     // Trusted local logo asset only — never enable this for user-uploaded SVGs.

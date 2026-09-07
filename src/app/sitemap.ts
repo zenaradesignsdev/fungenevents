@@ -15,13 +15,19 @@ import { siteConfig } from '@/lib/metadata'
  */
 const LAST_MODIFIED = new Date(process.env.BUILD_TIME ?? Date.now())
 
+const ROUTES: { path: string; priority: number }[] = [
+  { path: '', priority: 1 },
+  { path: '/services', priority: 0.9 },
+  { path: '/portfolio', priority: 0.8 },
+  { path: '/about', priority: 0.7 },
+  { path: '/contact', priority: 0.6 },
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteConfig.url,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-  ]
+  return ROUTES.map(({ path, priority }) => ({
+    url: `${siteConfig.url}${path}`,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: 'monthly',
+    priority,
+  }))
 }

@@ -30,10 +30,20 @@
     --brand: 216 41% 18%; /* Deep Navy #1B2A41 */
     --brand-foreground: 36 33% 97%; /* Warm White #FAF8F5 */
     --brand-muted: 216 30% 92%;
+    --brand-dark: 214 41% 13%; /* Deepest Navy #131E2E — footer & CTA bands */
 
     /* ─── Luxury Gold accent #C9A227 — used sparingly for CTAs/highlights ─── */
     --gold: 46 68% 47%;
     --gold-foreground: 0 0% 20%;
+
+    /* Gold for TEXT ON LIGHT backgrounds only. The brand gold is 2.26:1 on the
+       warm-white page and on the soft-gray panels, well under the 4.5:1 WCAG AA
+       floor, and it is used for real labels (PHONE, EMAIL, section kickers), not
+       decoration. #846B1A is the same hue darkened until it clears AA on both
+       (4.83:1 on --background, 4.58:1 on --secondary).
+       Do NOT use this on navy — it drops to 2.96:1 there. Rules, fills, borders
+       and the logo keep the brand gold; only text changes. */
+    --gold-ink: 46 67% 31%;
 
     /* ─── Font CSS variables — injected via html className in layout.tsx ─── */
     /* --font-sans is set by next/font (Inter by default, swap per client)   */
@@ -50,6 +60,22 @@
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  /* Backstop against horizontal scroll from decorative bleeds / vw units.
+     `clip` rather than `hidden` on purpose: `hidden` makes the root a scroll
+     container, which silently disables `position: sticky` for every descendant
+     (it broke the portfolio filter bar). `clip` blocks the same overflow
+     without creating one. */
+  html,
+  body {
+    @apply overflow-x-clip;
+  }
+
+  /* Brand text selection */
+  ::selection {
+    background: hsl(var(--gold));
+    color: hsl(var(--brand-foreground));
   }
 
   /* Consistent focus ring across all interactive elements */

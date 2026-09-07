@@ -8,16 +8,21 @@ import type { Metadata } from 'next'
 export const siteConfig = {
   name: 'FunGen Events and Experiences',
   description:
-    'FunGen Events and Experiences plans birthdays, weddings, anniversaries, social gatherings, entertainment, and nonprofit events. Full website coming soon.',
+    'FunGen Events & Experiences plans birthdays, anniversaries, weddings, corporate lunches, patio parties and community fundraisers across the Greater Toronto Area, from Scarborough and Markham to Mississauga, Brampton and Vaughan.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fungenevents.ca',
   ogImage: '/og-image.jpg',
   locale: 'en_CA',
 } as const
 
-// Real business contact details — email is still a placeholder (see HomeLanding.tsx).
+// Real business contact details, all confirmed with the client.
 export const businessInfo = {
   telephone: '+16479269787',
   telephoneDisplay: '(647) 926-9787',
+  // The studio's real inbox, confirmed 2026-09-07. This is the address shown on
+  // the site and emitted in JSON-LD; it is also where the contact form delivers
+  // (CONTACT_TO_EMAIL). It is NOT a valid CONTACT_FROM_EMAIL — Resend can only
+  // send from a domain you have verified, and nobody can verify gmail.com.
+  email: 'fungeneventsinc@gmail.com',
   address: {
     streetAddress: 'Unit 312/5, 2855 Markham Road',
     addressLocality: 'Toronto',
@@ -35,10 +40,28 @@ export function getLocalBusinessJsonLd() {
     description: siteConfig.description,
     url: siteConfig.url,
     telephone: businessInfo.telephone,
+    email: businessInfo.email,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    // Matches the budget ranges the enquiry form actually offers (from under
+    // $2,500). '$$$' read as luxury, which is the positioning the copy moved away from.
+    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       ...businessInfo.address,
     },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Greater Toronto Area' },
+      { '@type': 'City', name: 'Toronto' },
+      { '@type': 'Place', name: 'Scarborough' },
+      { '@type': 'City', name: 'Markham' },
+      { '@type': 'City', name: 'Mississauga' },
+      { '@type': 'City', name: 'Brampton' },
+      { '@type': 'City', name: 'Vaughan' },
+      { '@type': 'City', name: 'Richmond Hill' },
+      { '@type': 'City', name: 'Pickering' },
+      { '@type': 'City', name: 'Ajax' },
+      { '@type': 'City', name: 'Oakville' },
+    ],
   }
 }
 
