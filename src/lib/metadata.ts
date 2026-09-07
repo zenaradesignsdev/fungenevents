@@ -8,7 +8,7 @@ import type { Metadata } from 'next'
 export const siteConfig = {
   name: 'FunGen Events and Experiences',
   description:
-    'FunGen Events & Experiences is a Toronto luxury event planning studio designing weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
+    'FunGen Events & Experiences plans birthdays, anniversaries, weddings, corporate lunches, patio parties and community fundraisers across the Greater Toronto Area, from Scarborough and Markham to Mississauga, Brampton and Vaughan.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fungenevents.ca',
   ogImage: '/og-image.jpg',
   locale: 'en_CA',
@@ -45,8 +45,17 @@ export function getLocalBusinessJsonLd() {
       ...businessInfo.address,
     },
     areaServed: [
-      { '@type': 'City', name: 'Toronto' },
       { '@type': 'AdministrativeArea', name: 'Greater Toronto Area' },
+      { '@type': 'City', name: 'Toronto' },
+      { '@type': 'Place', name: 'Scarborough' },
+      { '@type': 'City', name: 'Markham' },
+      { '@type': 'City', name: 'Mississauga' },
+      { '@type': 'City', name: 'Brampton' },
+      { '@type': 'City', name: 'Vaughan' },
+      { '@type': 'City', name: 'Richmond Hill' },
+      { '@type': 'City', name: 'Pickering' },
+      { '@type': 'City', name: 'Ajax' },
+      { '@type': 'City', name: 'Oakville' },
     ],
   }
 }

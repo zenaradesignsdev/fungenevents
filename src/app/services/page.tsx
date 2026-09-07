@@ -13,7 +13,7 @@ import { SERVICES } from '@/lib/site-data'
 export const metadata: Metadata = buildMetadata({
   title: 'Event Planning Services',
   description:
-    'Event planning services from FunGen Events & Experiences: weddings, birthdays, anniversaries, social events, entertainment production and nonprofit galas.',
+    'Event planning services from FunGen Events & Experiences across the GTA: birthdays, anniversaries, weddings, corporate lunches and happy hours, patio parties and community fundraisers in Scarborough, Markham, Brampton and Vaughan.',
   path: '/services',
 })
 
@@ -30,7 +30,7 @@ export default function ServicesPage() {
           className="min-h-[clamp(500px,74vh,780px)]"
           title={
             <>
-              Six disciplines. One team, start to <em className="italic text-gold">finish</em>.
+              Six kinds of event. One team, start to <em className="italic text-gold">finish</em>.
             </>
           }
         >

@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { Image } from '@/components/ui/image'
-import { NAV_LINKS, SERVICES, SOCIAL_LINKS } from '@/lib/site-data'
+import { NAV_LINKS, SERVICE_AREA_CITIES, SERVICES, SOCIAL_LINKS } from '@/lib/site-data'
 import { businessInfo } from '@/lib/metadata'
 
 // py on mobile only lifts the 20px text to a 44px tap target; from sm: up the
 // padding is dropped and the column gap below restores the original rhythm.
 const linkClass =
-  'py-3 font-sans text-[13px] font-light tracking-[0.05em] text-brand-foreground/80 transition-colors duration-300 hover:text-gold sm:py-0'
+  'py-3 font-sans text-[14.5px] font-light tracking-[0.05em] sm:text-[13px] text-brand-foreground/80 transition-colors duration-300 hover:text-gold sm:py-0'
 
 const linkColumnClass = 'flex flex-col sm:gap-3.5'
 
@@ -24,7 +24,7 @@ export function SiteFooter() {
               <Image
                 src="/images/fungen-mark-gold.svg"
                 alt="FunGen Events & Experiences"
-                width={43}
+                width={19}
                 height={48}
                 className="h-12 w-auto"
               />
@@ -62,7 +62,7 @@ export function SiteFooter() {
           {/* Studio */}
           <div>
             <span className={headingClass}>Studio</span>
-            <address className="flex flex-col gap-4 font-sans text-[13px] font-light not-italic leading-[1.7] text-brand-foreground/80">
+            <address className="flex flex-col gap-4 font-sans text-[14.5px] font-light not-italic leading-[1.7] text-brand-foreground/80 sm:text-[13px]">
               <a
                 href={`tel:${businessInfo.telephone}`}
                 className="py-[11px] transition-colors duration-300 hover:text-gold sm:py-0"
@@ -85,6 +85,9 @@ export function SiteFooter() {
                 Mon–Fri&nbsp;&nbsp;9–6
                 <br />
                 Sat by appointment
+              </span>
+              <span className="text-brand-foreground/50">
+                Serving {SERVICE_AREA_CITIES.join(', ')} &amp; the wider GTA
               </span>
             </address>
           </div>

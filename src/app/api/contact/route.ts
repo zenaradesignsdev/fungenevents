@@ -74,7 +74,7 @@ export async function POST(request: Request) {
   ]
 
   const html = `
-    <h2 style="font-family:Georgia,serif;color:#1B2A41;">New enquiry — FunGen Events</h2>
+    <h2 style="font-family:Georgia,serif;color:#1B2A41;">New enquiry: FunGen Events</h2>
     <table style="font-family:Arial,sans-serif;font-size:14px;color:#333;border-collapse:collapse;">
       ${rows
         .map(
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: toEmail,
       replyTo: data.email,
-      subject: `New enquiry — ${data.eventType} — ${data.name}`,
+      subject: `New enquiry: ${data.eventType}, ${data.name}`,
       html,
     })
 

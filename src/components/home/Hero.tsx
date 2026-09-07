@@ -69,8 +69,9 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.42, ease: EASE }}
               className="mt-[clamp(24px,2.6vw,36px)] max-w-[44ch] font-sans text-[clamp(14.5px,1.05vw,16.5px)] font-light leading-[1.95] text-brand-foreground/70 text-pretty"
             >
-              Toronto-based and hands-on: from weddings and milestone celebrations to galas and live
-              experiences, we handle every detail of the planning and production so you can simply enjoy the day.
+              Scarborough-based and hands-on across the GTA, from Markham and Mississauga to Brampton and
+              Vaughan. We plan backyard birthdays, banquet hall weddings, corporate lunches and community
+              fundraisers, and we run the day so you can enjoy it.
             </m.p>
 
             <m.div
@@ -113,7 +114,9 @@ export function Hero() {
                   sizes="(max-width: 480px) 100vw, (max-width: 1024px) 60vw, 40vw"
                   className="object-cover motion-safe:animate-kenburns"
                 />
-                <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,19,31,.1),rgba(11,19,31,.55))]" />
+                {/* Deeper foot than the top stop: this card's photo is pale where the
+                    caption sits, and .55 left the gold eyebrow illegible. */}
+                <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,19,31,.06)_45%,rgba(11,19,31,.82))]" />
                 <span className="absolute bottom-[18px] left-[18px] flex flex-col gap-1.5">
                   <span className="font-sans text-[8.5px] uppercase tracking-[0.3em] text-gold">
                     {HERO_HIGHLIGHTS.primary.eyebrow}

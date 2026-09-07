@@ -1,6 +1,6 @@
 import { Image } from '@/components/ui/image'
 import { businessInfo } from '@/lib/metadata'
-import { SOCIAL_LINKS } from '@/lib/site-data'
+import { SERVICE_AREA_CITIES, SOCIAL_LINKS } from '@/lib/site-data'
 
 const { address } = businessInfo
 const fullAddress = `${address.streetAddress}, ${address.addressLocality} ${address.addressRegion} ${address.postalCode}`
@@ -68,7 +68,7 @@ export function ContactDetails() {
         >
           <Image
             src="/images/gallery/reception-ballroom.jpg"
-            alt="FunGen Events studio — Toronto"
+            alt="FunGen Events studio — Scarborough, GTA"
             fill
             sizes="(max-width: 1024px) 90vw, 45vw"
             className="object-cover brightness-[0.42] grayscale transition-[filter] duration-500 group-hover:brightness-50"
@@ -76,7 +76,7 @@ export function ContactDetails() {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3.5 text-center">
             <span className="block h-3 w-3 rotate-45 border border-gold" />
             <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-brand-foreground/85">
-              Toronto, ON
+              Scarborough, ON
               <br />
               <span className="text-brand-foreground/45">View on Google Maps</span>
             </span>
@@ -85,6 +85,10 @@ export function ContactDetails() {
             Studio visits by appointment
           </span>
         </a>
+        <p className="mt-4 font-sans text-[14.5px] font-light leading-[1.8] text-foreground/70 text-pretty md:text-[13px]">
+          We plan across the Greater Toronto Area, including {SERVICE_AREA_CITIES.join(', ')}. No travel
+          charge anywhere inside the GTA.
+        </p>
       </div>
 
       {/* Socials */}

@@ -4,7 +4,7 @@ import { PortfolioCard } from '@/components/shared/PortfolioCard'
 import { PORTFOLIO_ITEMS } from '@/lib/site-data'
 
 export function FeaturedPortfolio() {
-  const featured = PORTFOLIO_ITEMS.slice(0, 9)
+  const featured = PORTFOLIO_ITEMS.slice(0, 3)
 
   return (
     <section className="bg-secondary px-5 py-[clamp(72px,11vw,160px)] sm:px-8 lg:px-16">
@@ -18,14 +18,14 @@ export function FeaturedPortfolio() {
               </span>
             </div>
             <h2 className="max-w-[22ch] font-display text-[clamp(30px,4.2vw,64px)] font-normal leading-[1.08] text-brand text-balance">
-              Evenings we&apos;re still being told stories about.
+              Work we&apos;re still being told stories about.
             </h2>
           </div>
           <ArrowLink href="/portfolio">Full portfolio</ArrowLink>
         </div>
 
         <div className="grid grid-cols-1 gap-[clamp(14px,1.6vw,26px)] md:grid-cols-3">
-          {featured.map((item) => (
+          {featured.map((item, i) => (
             <Reveal key={item.title}>
               <PortfolioCard
                 href="/portfolio"
@@ -33,8 +33,10 @@ export function FeaturedPortfolio() {
                 alt={item.alt}
                 tag={item.tag}
                 title={item.title}
-                ratio={item.ratio}
-                offset={item.ratio === 'square'}
+                // Uniform portrait here regardless of the project's own ratio:
+                // this is a tidy row of three, not the portfolio's feature grid.
+                ratio="portrait"
+                offset={i === 1}
               />
             </Reveal>
           ))}

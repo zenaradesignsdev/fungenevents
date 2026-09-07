@@ -1,6 +1,6 @@
 'use client'
 
-import { LazyMotion, domAnimation } from 'framer-motion'
+import { LazyMotion, MotionConfig, domAnimation } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
 
 /**
@@ -11,6 +11,11 @@ import { Toaster } from '@/components/ui/sonner'
  * lightweight `m.*` components everywhere — using `motion.*` will throw, which
  * keeps the bundle small by construction.
  *
+ * MotionConfig reducedMotion="user" makes every m.* component honour the OS
+ * setting. Hero/Reveal/Testimonials/PortfolioGallery already call
+ * useReducedMotion themselves; the mobile menu and the services FAQ accordion
+ * did not, and this covers them without duplicating the hook in each.
+ *
  * (TanStack Query was removed — nothing in the app issues client queries; the
  * contact form posts with a plain fetch. Re-add QueryClientProvider here if a
  * real client-side query is introduced.)
@@ -18,8 +23,10 @@ import { Toaster } from '@/components/ui/sonner'
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <LazyMotion features={domAnimation} strict>
-      {children}
-      <Toaster position="bottom-right" richColors />
+      <MotionConfig reducedMotion="user">
+        {children}
+        <Toaster position="bottom-right" richColors />
+      </MotionConfig>
     </LazyMotion>
   )
 }

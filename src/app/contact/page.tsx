@@ -20,7 +20,7 @@ const ContactForm = dynamic(
 export const metadata: Metadata = buildMetadata({
   title: 'Book a Consultation',
   description:
-    'Contact FunGen Events & Experiences to plan a Toronto wedding, birthday, anniversary, social event, entertainment production or nonprofit gala this season.',
+    'Contact FunGen Events & Experiences to plan a birthday, anniversary, wedding, corporate lunch, patio party or community fundraiser. Based in Scarborough, planning across Markham, Mississauga, Brampton and the wider GTA.',
   path: '/contact',
 })
 
@@ -34,10 +34,10 @@ export default function ContactPage() {
           eyebrow="Contact"
           title={
             <>
-              Tell us about the <em className="italic text-gold">evening</em> you&apos;re imagining.
+              Tell us about the <em className="italic text-gold">day</em> you&apos;re imagining.
             </>
           }
-          description="Consultations are complimentary and about forty-five minutes. Bring a date, a rough guest count, and any feeling you're chasing — we'll handle the rest of the questions."
+          description="Consultations are free and take about thirty minutes. Bring a date, a rough guest count and a budget, and we will ask the rest."
         />
 
         <section className="bg-background px-5 pb-[clamp(70px,10vw,140px)] sm:px-8 lg:px-16">

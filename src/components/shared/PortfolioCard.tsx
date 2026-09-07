@@ -9,7 +9,7 @@ type PortfolioCardProps = {
   tag: string
   title: string
   meta?: string
-  ratio?: 'portrait' | 'square'
+  ratio?: 'portrait' | 'square' | 'wide'
   /** Adds a top offset at wide widths for the staggered masonry look. */
   offset?: boolean
   sizes?: string
@@ -31,7 +31,9 @@ export function PortfolioCard({
       href={href}
       className={cn(
         'group relative block overflow-hidden bg-brand',
-        ratio === 'portrait' ? 'aspect-[4/5]' : 'aspect-square',
+        ratio === 'portrait' && 'aspect-[4/5]',
+        ratio === 'square' && 'aspect-square',
+        ratio === 'wide' && 'aspect-[4/5] sm:aspect-[3/2]',
         offset && 'lg:mt-[clamp(0px,3vw,54px)]',
       )}
     >
@@ -42,7 +44,7 @@ export function PortfolioCard({
         sizes={sizes}
         className="object-cover transition-[transform,opacity] duration-[1500ms] ease-[cubic-bezier(.32,.72,0,1)] group-hover:scale-[1.07] group-hover:opacity-60"
       />
-      <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-[linear-gradient(180deg,rgba(19,30,46,0),rgba(19,30,46,.82))] p-[clamp(18px,2vw,26px)]">
+      <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-[linear-gradient(180deg,rgba(19,30,46,0),rgba(19,30,46,.58)_52%,rgba(19,30,46,.93))] px-[clamp(18px,2vw,26px)] pb-[clamp(18px,2vw,26px)] pt-[clamp(46px,5vw,74px)]">
         <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-gold">{tag}</span>
         <span className="font-display text-[clamp(21px,1.9vw,29px)] font-normal leading-[1.2] text-brand-foreground">
           {title}

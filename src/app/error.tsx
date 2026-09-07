@@ -21,7 +21,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <Image
           src="/images/fungen-mark-gold.svg"
           alt=""
-          width={52}
+          width={23}
           height={58}
           priority
           className="h-[58px] w-auto"
@@ -34,7 +34,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         A hiccup behind the scenes
       </h1>
       <p className="mt-6 max-w-[46ch] font-sans text-[15px] font-light leading-[1.9] text-brand-foreground/70 text-pretty">
-        This one is on us. Try again in a moment — and if it keeps happening, call the studio
+        This one is on us. Try again in a moment, and if it keeps happening, call us
         and we&apos;ll sort it out with you.
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-3.5">

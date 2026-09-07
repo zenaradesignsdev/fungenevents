@@ -9,7 +9,7 @@ export default function NotFound() {
         <Image
           src="/images/fungen-mark-gold.svg"
           alt=""
-          width={52}
+          width={23}
           height={58}
           priority
           className="h-[58px] w-auto"

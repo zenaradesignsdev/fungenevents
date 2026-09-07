@@ -14,9 +14,9 @@ import { FeaturedPortfolio } from '@/components/home/FeaturedPortfolio'
 import { Testimonials } from '@/components/home/Testimonials'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Toronto Event Planning',
+  title: 'GTA Event Planning',
   description:
-    'Toronto luxury event planning by FunGen Events & Experiences — weddings, milestone birthdays, anniversaries, social events, entertainment and nonprofit galas.',
+    'Event planning and day-of coordination across the Greater Toronto Area by FunGen Events & Experiences: backyard birthdays, banquet hall weddings, corporate lunches and community fundraisers in Scarborough, Markham, Mississauga and beyond.',
   path: '/',
 })
 
@@ -40,9 +40,9 @@ export default function HomePage() {
         <CtaBand
           image="/images/gallery/reception-ballroom.jpg"
           imageAlt="Ballroom set for an evening reception"
-          eyebrow="Consultations open for 2026 & 2027"
+          eyebrow="Now booking 2026 dates"
           title="Most of our best events start with an email like this one."
-          description="Tell us the date, the guest count, and the feeling you're after. We'll come back with a plan, a budget, and a point of view."
+          description="Tell us the date, the guest count and roughly what you want the day to feel like. We will come back with a plan and a budget."
           animateImage
         >
           <CtaButton href="/contact" variant="gold">

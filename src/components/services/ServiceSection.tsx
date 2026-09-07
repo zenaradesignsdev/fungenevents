@@ -146,7 +146,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                           transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="mb-[22px] max-w-[56ch] font-sans text-[14.5px] font-light leading-[1.9] text-foreground/75 text-pretty">
+                          <p className="mb-[22px] max-w-[56ch] font-sans text-[15px] font-light leading-[1.9] text-foreground/75 text-pretty md:text-[14.5px]">
                             {faq.a}
                           </p>
                         </m.div>

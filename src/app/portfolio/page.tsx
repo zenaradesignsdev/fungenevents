@@ -13,7 +13,7 @@ import { PORTFOLIO_STORIES } from '@/lib/site-data'
 export const metadata: Metadata = buildMetadata({
   title: 'Event Portfolio',
   description:
-    'A gallery of Toronto weddings, milestone birthdays, anniversaries, social events, entertainment productions and nonprofit galas by FunGen Events & Experiences.',
+    'A gallery of GTA birthdays, anniversaries, weddings, corporate events, patio parties and community fundraisers by FunGen Events & Experiences, from Markham and Scarborough to Mississauga and Vaughan.',
   path: '/portfolio',
 })
 
@@ -30,7 +30,7 @@ export default function PortfolioPage() {
               Rooms that meant something to <em className="italic text-gold">someone</em>.
             </>
           }
-          description="Every project here started as a conversation about people, not palettes. Filter by discipline, or read two of the stories in full below."
+          description="Every event here started as a conversation about people, not palettes. Filter by type, or read three of the stories in full below."
         />
         <PortfolioGallery />
         {PORTFOLIO_STORIES.map((story, i) => (

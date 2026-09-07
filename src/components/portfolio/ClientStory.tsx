@@ -81,7 +81,7 @@ export function ClientStory({ story, shaded }: { story: Story; shaded: boolean }
           as="span"
           className="mb-[clamp(30px,4vw,52px)] block font-sans text-[10px] uppercase tracking-[0.34em] text-gold"
         >
-          Client story — {story.index}
+          Client story {story.index}
         </Reveal>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(38px,5vw,92px)]">
           {story.imageFirst ? (

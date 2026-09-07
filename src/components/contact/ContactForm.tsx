@@ -53,7 +53,7 @@ export function ContactForm() {
       <div className="border border-gold/60 bg-secondary p-[clamp(34px,4vw,58px)]">
         <span className="mb-[26px] block h-11 w-px bg-gold" />
         <h2 className="mb-[18px] font-display text-[clamp(26px,3vw,42px)] font-normal leading-[1.15] text-brand">
-          Thank you — your enquiry is with us.
+          Thank you. Your enquiry is with us.
         </h2>
         <p className="mb-[26px] max-w-[44ch] font-sans text-[15px] font-light leading-[1.9] text-foreground/75 text-pretty">
           {submittedName}, we read every enquiry personally and reply within two business days. If your date is
@@ -135,7 +135,7 @@ export function ContactForm() {
       <div className="mt-[clamp(30px,3.6vw,48px)] grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[clamp(22px,2.6vw,38px)]">
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Estimated guests</span>
-          <input type="text" placeholder="e.g. 120" className={fieldClass} {...register('guests')} />
+          <input type="text" inputMode="numeric" placeholder="e.g. 120" className={fieldClass} {...register('guests')} />
         </label>
         <label className="flex flex-col gap-2.5">
           <span className={labelClass}>Budget range</span>

@@ -17,8 +17,8 @@ export function WhyChooseUs() {
             delay={0.12}
             className="max-w-[44ch] font-sans text-[15.5px] font-light leading-[1.9] text-foreground/75 text-pretty"
           >
-            We work with a small number of events each season. That restraint is deliberate — it&apos;s how the
-            details stay right and the day stays calm.
+            We only take on a few events at a time. That is how the details stay right and the day stays
+            calm.
           </Reveal>
         </div>
 

@@ -6,7 +6,9 @@
 ## Client
 
 - **Name**: FunGen Events and Experiences
-- **Industry**: Event planning — birthdays, weddings, anniversaries, social gatherings, entertainment, and nonprofit events
+- **Industry**: Event planning. Birthdays (often at home), anniversaries, weddings (banquet halls
+  around Markham and Scarborough, including the convention centres), corporate lunches and
+  happy hours, patio and outdoor parties, and local nonprofit, book fair and community events.
 - **Website**: fungenevents.ca — real domain, confirmed 2026-07-27
 - **Phone**: (647) 926-9787 — real, confirmed 2026-07-27
 - **Address**: Unit 312/5, 2855 Markham Road, Toronto, ON M1X 0C3 — real, confirmed 2026-07-27
@@ -94,7 +96,11 @@ keep the build warning-free.
 
 ## Content & Copy
 
-- **Tone**: Warm, professional, celebratory
+- **Tone**: Warm, professional, plain-spoken. This is a small local business, not a luxury
+  agency: no "galas", no "luxury", no five-hundred-guest events, no destination weddings.
+  Guest counts on the site stay in the 20-150 range. Em dashes are used sparingly by
+  deliberate choice (the copy was rewritten 2026-09-04 to remove 56 of them); prefer
+  commas, periods and colons.
 - All copy/imagery centralised in `src/lib/site-data.ts`.
 - Real phone/address/email in `src/lib/metadata.ts` → `businessInfo` (email
   `hello@fungenevents.ca` is still a placeholder pending the client). Emitted as
@@ -104,19 +110,26 @@ keep the build warning-free.
 
 ## Images
 
-- `public/images/gallery/` holds 22 event photos (downloaded locally from the design's
-  stock sources so they serve same-origin under the `img-src 'self'` CSP).
-- Logo: `public/images/fungen-logo.svg` is the client's master mark (fungen-logo-v2, the
-  gradient "G" monogram). Three derived marks share its path on a tight
-  `8.9 8.9 129.9 143.8` viewBox — aspect ratio ≈ **0.903 (portrait)**:
-  - `fungen-mark-gold.svg` — the logo's own bright gradient. **Dark backgrounds only.**
-  - `fungen-mark-gold-deep.svg` — same gradient shifted darker. **Light backgrounds** —
-    the bright version's highlight stop disappears against `#FAF8F5`.
+- `public/images/gallery/` holds 27 event photos (downloaded locally from the design's
+  stock sources so they serve same-origin under the `img-src 'self'` CSP). The three
+  `corporate-*.jpg` files back the Corporate Events discipline. Four are client-supplied
+  (2026-09-04): `ceremony-aisle-florals`, `candlelit-table-setting` and `ballroom-styling`
+  are the homepage hero collage; `party-crowd-lights` is a Birthdays portfolio card. The
+  latter two are AI-generated (Gemini) — not photographs of the client's own events.
+- Logo: `public/images/fungen-logo.svg` is the client's master mark (FUNGEN-LOGO-V3, the
+  flat `#EFB921` flame monogram, delivered 2026-09-04), stored exactly as supplied. Three
+  derived marks carry its three drawing paths on a tight `6.3 6.5 44.6 114.9` viewBox —
+  aspect ratio ≈ **0.388 (tall and narrow)**, so width ≈ height × 0.3882 wherever the mark
+  is sized. The master ships 38 zero-length `<path>` stubs; the derived marks drop them.
+  - `fungen-mark-gold.svg` — the logo's own `#EFB921`. **Dark backgrounds only.**
+  - `fungen-mark-gold-deep.svg` — `#C9A227` (the `--gold` token). **Light backgrounds** —
+    the delivered gold reads faint against `#FAF8F5`.
   - `fungen-mark-cream.svg` — flat `#FAF8F5`, for the nav over the dark hero.
 - `public/og-image.jpg` (1200×630) — brand OG card (mark + wordmark), generated with sharp.
 - Favicons / app icons (`favicon-16/32`, `apple-touch-icon`, `android-chrome-192/512`,
-  `src/app/favicon.ico`) are the mark on a navy tile. The 16/32px ones use a flat
-  `#E6C96D` fill — the gradient's dark stops turn to mud at hairline stroke widths.
+  `src/app/favicon.ico`) are the mark on a navy tile. The 16/32px ones brighten the fill
+  (`#F5C842` / `#F0BE2A`) and use less padding — the mark is narrow enough that hairline
+  strokes need the extra weight to survive.
 - SVG marks require `dangerouslyAllowSVG` in `next.config.mjs` (already enabled, scoped
   to trusted local assets only — never enable for user-uploaded SVGs).
 - Use `<Image />` from `@/components/ui/image` for all rendered images — never raw `<img>`

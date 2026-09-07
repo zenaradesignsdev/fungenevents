@@ -52,24 +52,25 @@ export function AboutPreview() {
             delay={0.14}
             className="mb-[18px] max-w-[52ch] font-sans text-base font-light leading-[1.9] text-foreground text-pretty"
           >
-            We started FunGen because the best celebrations aren&apos;t the most expensive ones — they&apos;re
-            the ones that feel unmistakably like the people they&apos;re for. Every timeline, floor plan, and
-            place card begins with a conversation about you.
+            We started FunGen because the best celebrations are not the most expensive ones. They are the
+            ones that feel like the people they are for. Every timeline, floor plan and place card starts
+            with a conversation about you.
           </Reveal>
           <Reveal
             as="p"
             delay={0.18}
             className="mb-[clamp(34px,4vw,52px)] max-w-[52ch] font-sans text-base font-light leading-[1.9] text-foreground/70 text-pretty"
           >
-            From a fiftieth birthday in a private dining room to a five-hundred-guest gala, we bring the same
-            discipline: careful design, honest budgets, and a team that stays calm so you don&apos;t have to.
+            From a fiftieth birthday in a backyard to a wedding reception for a hundred and fifty, we bring
+            the same care: honest budgets, plans you can follow, and a team that stays calm so you do not
+            have to.
           </Reveal>
 
           <Reveal delay={0.22} className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-[clamp(24px,3vw,48px)] border-t border-brand/15">
             {STUDIO_PILLARS.map((pillar) => (
               <div key={pillar.title} className="border-b border-brand/15 py-[22px]">
                 <span className="block font-display text-[22px] leading-[1.3] text-brand">{pillar.title}</span>
-                <span className="mt-1 block font-sans text-[13px] font-light leading-[1.7] text-foreground/65">
+                <span className="mt-1 block font-sans text-[15px] font-light leading-[1.7] text-foreground/65 md:text-[13px]">
                   {pillar.body}
                 </span>
               </div>

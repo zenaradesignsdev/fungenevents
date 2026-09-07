@@ -52,7 +52,7 @@ export function ServicesPreview() {
                     >
                       {service.title}
                     </span>
-                    <span className="max-w-[46ch] font-sans text-[13.5px] font-light leading-[1.7] text-brand-foreground/60">
+                    <span className="max-w-[46ch] font-sans text-[15px] font-light leading-[1.7] text-brand-foreground/60 md:text-[13.5px]">
                       {service.lede}
                     </span>
                   </span>

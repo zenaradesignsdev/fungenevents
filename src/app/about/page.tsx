@@ -10,12 +10,13 @@ import { AboutManifesto } from '@/components/about/AboutManifesto'
 import { MissionVision } from '@/components/about/MissionVision'
 import { CoreValues } from '@/components/about/CoreValues'
 import { Process } from '@/components/about/Process'
+import { ServiceAreas } from '@/components/about/ServiceAreas'
 import { WhyChooseFunGen } from '@/components/about/WhyChooseFunGen'
 
 export const metadata: Metadata = buildMetadata({
   title: 'About the Studio',
   description:
-    'Meet FunGen Events & Experiences: the mission, values and calm planning behind our Toronto weddings, milestone celebrations, galas and nonprofit events.',
+    'Meet FunGen Events & Experiences: the people, values and planning behind birthdays, anniversaries, weddings, corporate lunches and community fundraisers across the Greater Toronto Area.',
   path: '/about',
 })
 
@@ -28,7 +29,7 @@ export default function AboutPage() {
         <ImageHero
           image="/images/gallery/two-guests.jpg"
           imageAlt="Two guests in conversation at an evening event"
-          eyebrow="About the studio"
+          eyebrow="About us"
           className="min-h-[clamp(560px,82vh,860px)]"
           title={
             <>
@@ -40,6 +41,7 @@ export default function AboutPage() {
         <MissionVision />
         <CoreValues />
         <Process />
+        <ServiceAreas />
         <WhyChooseFunGen />
         <CtaBand
           image="/images/gallery/couple-dancing.jpg"

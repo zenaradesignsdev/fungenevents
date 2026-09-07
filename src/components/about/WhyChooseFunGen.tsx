@@ -5,14 +5,14 @@ import { ABOUT_CHOOSES } from '@/lib/site-data'
 
 export function WhyChooseFunGen() {
   return (
-    <section className="bg-background px-5 py-[clamp(70px,10vw,150px)] sm:px-8 lg:px-16">
+    <section className="bg-background px-5 py-[clamp(64px,8vw,124px)] sm:px-8 lg:px-16">
       <div className="mx-auto grid max-w-[1560px] grid-cols-1 items-center gap-[clamp(40px,5vw,92px)] lg:grid-cols-2">
         {/* Image + badge */}
         <Reveal className="relative">
           <div className="aspect-[3/4] overflow-hidden bg-secondary">
             <Image
-              src="/images/gallery/warm-room-guests.jpg"
-              alt="Guests gathered in a warmly lit room"
+              src="/images/gallery/ballroom-styling.jpg"
+              alt="Planners styling a room with florals before guests arrive"
               width={1200}
               height={1600}
               sizes="(max-width: 1024px) 90vw, 45vw"
@@ -34,7 +34,7 @@ export function WhyChooseFunGen() {
             delay={0.08}
             className="mb-[30px] max-w-[20ch] font-display text-[clamp(28px,3.6vw,52px)] font-normal leading-[1.12] text-brand text-balance"
           >
-            The difference shows up in the quiet parts.
+            The difference shows up in the small things.
           </Reveal>
           <Reveal delay={0.14} className="border-t border-brand/15">
             {ABOUT_CHOOSES.map((item) => (

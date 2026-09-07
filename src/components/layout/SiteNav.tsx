@@ -59,8 +59,8 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  // Cream over the dark hero; the deeper gold gradient once the bar frosts,
-  // since the logo's own highlight washes out against the warm-white bar.
+  // Cream over the dark hero; the deeper gold once the bar frosts, since the
+  // mark's own bright gold reads faint against the warm-white bar.
   const markSrc = onDark ? '/images/fungen-mark-cream.svg' : '/images/fungen-mark-gold-deep.svg'
 
   return (
@@ -92,7 +92,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
           )}
           aria-label="FunGen Events & Experiences — home"
         >
-          <Image src={markSrc} alt="" width={34} height={38} className="h-[38px] w-auto" />
+          <Image src={markSrc} alt="" width={15} height={38} className="h-[38px] w-auto" />
           <span className="font-display text-2xl font-normal uppercase leading-none tracking-[0.14em]">
             FunGen
           </span>
@@ -192,7 +192,7 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             <Image
               src="/images/fungen-mark-gold.svg"
               alt=""
-              width={47}
+              width={20}
               height={52}
               // self-start stops the flex column stretching the img box to the
               // full sheet width, which letterboxed the mark into looking
