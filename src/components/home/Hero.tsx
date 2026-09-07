@@ -111,7 +111,7 @@ export function Hero() {
                   alt={HERO_HIGHLIGHTS.primary.alt}
                   fill
                   priority
-                  sizes="(max-width: 480px) 100vw, (max-width: 1024px) 60vw, 40vw"
+                  sizes="(max-width: 480px) 100vw, (max-width: 1024px) 70vw, 35vw"
                   className="object-cover motion-safe:animate-kenburns"
                 />
                 {/* Deeper foot than the top stop: this card's photo is pale where the
@@ -132,7 +132,7 @@ export function Hero() {
                     src={HERO_HIGHLIGHTS.secondary.image}
                     alt={HERO_HIGHLIGHTS.secondary.alt}
                     fill
-                    sizes="20vw"
+                    sizes="(max-width: 1024px) 30vw, 15vw"
                     className="object-cover motion-safe:animate-kenburns"
                   />
                 </div>
@@ -141,7 +141,7 @@ export function Hero() {
                     src={HERO_HIGHLIGHTS.tertiary.image}
                     alt={HERO_HIGHLIGHTS.tertiary.alt}
                     fill
-                    sizes="20vw"
+                    sizes="(max-width: 1024px) 30vw, 15vw"
                     className="object-cover motion-safe:animate-kenburns"
                   />
                 </div>

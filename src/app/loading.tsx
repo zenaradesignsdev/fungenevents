@@ -10,9 +10,8 @@ export default function Loading() {
       <Image
         src="/images/fungen-mark-gold-deep.svg"
         alt=""
-        width={43}
+        width={19}
         height={48}
-        priority
         className="h-12 w-auto motion-safe:animate-pulse"
       />
     </div>

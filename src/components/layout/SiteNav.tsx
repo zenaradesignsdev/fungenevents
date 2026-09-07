@@ -187,47 +187,62 @@ export function SiteNav({ theme = 'light' }: SiteNavProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-            className="pointer-events-auto fixed inset-0 z-[190] flex flex-col justify-center bg-brand px-6 pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] sm:px-12"
+            // Scrolls rather than clips. In landscape the sheet is taller than
+            // the viewport, and justify-center used to strand the mark above the
+            // top edge and the CTA below the bottom one, with no way to reach
+            // either. The top padding keeps the first link clear of the bar.
+            className="pointer-events-auto fixed inset-0 z-[190] flex flex-col overflow-y-auto overscroll-contain bg-brand px-6 pb-[calc(env(safe-area-inset-bottom)+28px)] pt-[calc(env(safe-area-inset-top)+84px)] sm:px-12"
           >
-            <Image
-              src="/images/fungen-mark-gold.svg"
-              alt=""
-              width={20}
-              height={52}
-              // self-start stops the flex column stretching the img box to the
-              // full sheet width, which letterboxed the mark into looking
-              // centred while every other item is left-aligned.
-              className="mb-6 h-[52px] w-auto self-start"
-            />
-            <span className="mb-8 font-sans text-[9px] uppercase tracking-[0.4em] text-brand-foreground/45">
-              Menu
-            </span>
-            {PRIMARY_NAV_LINKS.map((link, i) => (
-              <m.div
-                key={link.href}
-                initial={{ opacity: 0, y: 38 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.09 + i * 0.07, duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    'block border-b border-brand-foreground/10 py-2.5 font-display text-[clamp(38px,11vw,64px)] font-normal leading-[1.18] transition-colors duration-500 hover:text-gold',
-                    isActive(pathname, link.href) ? 'text-gold' : 'text-brand-foreground',
-                  )}
+            {/* m-auto centres the sheet when there is room and lets it scroll
+                when there isn't. justify-center on a scroll container pushes the
+                overflow above the scrollport, where it cannot be reached. */}
+            <div className="m-auto flex w-full flex-col">
+              <Image
+                src="/images/fungen-mark-gold.svg"
+                alt=""
+                width={20}
+                height={52}
+                // self-start stops the flex column stretching the img box to the
+                // full sheet width, which letterboxed the mark into looking
+                // centred while every other item is left-aligned.
+                // Decorative, so it is the first thing dropped when the viewport
+                // is too short to hold the whole sheet.
+                className="mb-6 h-[52px] w-auto self-start [@media(max-height:560px)]:hidden"
+              />
+              <span className="mb-8 font-sans text-[9px] uppercase tracking-[0.4em] text-brand-foreground/45 [@media(max-height:560px)]:hidden">
+                Menu
+              </span>
+              {PRIMARY_NAV_LINKS.map((link, i) => (
+                <m.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 38 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.09 + i * 0.07, duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
                 >
-                  {link.label}
-                </Link>
-              </m.div>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-9 rounded-full bg-gold px-8 py-[18px] text-center font-sans text-[11px] uppercase tracking-[0.28em] text-brand"
-            >
-              Book a Consultation
-            </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      'block border-b border-brand-foreground/10 py-2.5 font-display text-[clamp(38px,11vw,64px)] font-normal leading-[1.18] transition-colors duration-500 hover:text-gold',
+                      // The display size is driven by viewport *width*, which stays
+                      // generous on a landscape phone while the height collapses,
+                      // so cap it off the height instead.
+                      '[@media(max-height:560px)]:py-1.5 [@media(max-height:560px)]:text-[30px]',
+                      isActive(pathname, link.href) ? 'text-gold' : 'text-brand-foreground',
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </m.div>
+              ))}
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="mt-9 rounded-full bg-gold px-8 py-[18px] text-center font-sans text-[11px] uppercase tracking-[0.28em] text-brand [@media(max-height:560px)]:mt-6"
+              >
+                Book a Consultation
+              </Link>
+            </div>
           </m.div>
         )}
       </AnimatePresence>

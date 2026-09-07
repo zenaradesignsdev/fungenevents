@@ -31,12 +31,13 @@ export const PRIMARY_NAV_LINKS: NavLink[] = NAV_LINKS.filter(
   (link) => link.href !== '/contact',
 )
 
-export const SOCIAL_LINKS: NavLink[] = [
-  { label: 'Instagram', href: '#' },
-  { label: 'Pinterest', href: '#' },
-  { label: 'Facebook', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-]
+/**
+ * The client has no social accounts set up yet, so the other three networks are
+ * off the site entirely rather than sitting there as dead links. Instagram is
+ * kept as the placeholder and points back at the home page until a real handle
+ * arrives — swap the href then, and re-add the rest here as they go live.
+ */
+export const SOCIAL_LINKS: NavLink[] = [{ label: 'Instagram', href: '/' }]
 
 /* ─────────────────────────  Services  ───────────────────────── */
 

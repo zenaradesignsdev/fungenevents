@@ -97,8 +97,9 @@ export function SiteFooter() {
 
         <div className="flex flex-wrap items-center justify-between gap-5 font-sans text-[10.5px] font-light uppercase tracking-[0.2em] text-brand-foreground/45">
           <span>© {new Date().getFullYear()} FunGen Events &amp; Experiences</span>
-          {/* flex-wrap is load-bearing: the four labels measure ~371px and
-              overflowed the 335px container at every phone width. */}
+          {/* flex-wrap kept for when the remaining networks are re-added: the
+              full set measured ~371px and overflowed the 335px container at
+              every phone width. */}
           <div className="flex flex-wrap gap-x-6 gap-y-1">
             {SOCIAL_LINKS.map((social) => (
               <a
