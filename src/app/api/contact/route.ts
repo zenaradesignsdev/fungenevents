@@ -3,13 +3,43 @@ import { Resend } from 'resend'
 import { contactSchema } from '@/lib/validations/contact'
 import { rateLimit } from '@/lib/rate-limit'
 import { businessInfo } from '@/lib/metadata'
+import { BUDGET_RANGES } from '@/lib/site-data'
 import { logger } from '@/lib/logger'
 
+/**
+ * `x-real-ip` first: Vercel sets it and a client cannot forge it. `x-forwarded-for`
+ * is only consulted as a fallback, because its leftmost entry is whatever the
+ * caller put there on any host that does not overwrite the header — which would
+ * let one attacker rotate a fresh "IP" per request and walk straight past the
+ * rate limiter.
+ */
 function clientIp(request: Request): string {
+  const realIp = request.headers.get('x-real-ip')?.trim()
+  if (realIp) return realIp
   const forwarded = request.headers.get('x-forwarded-for')
   if (forwarded) return forwarded.split(',')[0].trim()
-  return request.headers.get('x-real-ip') ?? 'unknown'
+  return 'unknown'
 }
+
+/**
+ * Same-origin guard. A browser sends `Origin` on every cross-origin POST, so a
+ * mismatch is a request no first-party form made. Absent `Origin` is allowed
+ * through (non-browser callers, and some proxies strip it); the rate limiter and
+ * honeypot still apply to those.
+ */
+function isCrossOrigin(request: Request): boolean {
+  const origin = request.headers.get('origin')
+  if (!origin) return false
+  const host = request.headers.get('host')
+  try {
+    return new URL(origin).host !== host
+  } catch {
+    return true
+  }
+}
+
+/** Vercel caps bodies well above this; the form's own fields cap out near 5KB. */
+const MAX_BODY_BYTES = 64 * 1024
 
 const escapeHtml = (value: string) =>
   value
@@ -17,9 +47,22 @@ const escapeHtml = (value: string) =>
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+/** Bounded so a hung Resend call cannot hold a function open indefinitely. */
+export const maxDuration = 15
 
 export async function POST(request: Request) {
-  // Rate limit by IP first, before doing any work, to blunt abuse of the
+  if (isCrossOrigin(request)) {
+    return NextResponse.json({ error: 'Invalid request origin.' }, { status: 403 })
+  }
+
+  const declaredLength = Number(request.headers.get('content-length') ?? 0)
+  if (declaredLength > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: 'Request body too large.' }, { status: 413 })
+  }
+
+  // Rate limit by IP before doing any work, to blunt abuse of the
   // email-sending endpoint (5 requests / 10 minutes).
   const limit = rateLimit(`contact:${clientIp(request)}`)
   if (!limit.success) {
@@ -63,6 +106,9 @@ export async function POST(request: Request) {
     )
   }
 
+  // The select posts slugs ("7500-15000"); the studio should read the label.
+  const budgetLabel = BUDGET_RANGES.find((range) => range.value === data.budget)?.label
+
   const rows: [string, string][] = [
     ['Name', data.name],
     ['Email', data.email],
@@ -70,7 +116,8 @@ export async function POST(request: Request) {
     ['Event type', data.eventType],
     ['Event date', data.date || '—'],
     ['Estimated guests', data.guests || '—'],
-    ['Budget range', data.budget || '—'],
+    // The placeholder option's label ("Select a range") is not an answer.
+    ['Budget range', (data.budget && budgetLabel) || '—'],
   ]
 
   const html = `
@@ -88,14 +135,27 @@ export async function POST(request: Request) {
     )}</p>
   `
 
+  const text = [
+    'New enquiry: FunGen Events',
+    '',
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    '',
+    data.message || 'No message provided.',
+  ].join('\n')
+
   try {
     const resend = new Resend(apiKey)
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       replyTo: data.email,
-      subject: `New enquiry: ${data.eventType}, ${data.name}`,
+      // Belt and braces: the schema already rejects control characters in
+      // `name`, but nothing should be able to put a newline in a header even if
+      // that rule is ever relaxed.
+      subject: `New enquiry: ${data.eventType}, ${data.name}`.replace(/[\r\n]+/g, ' '),
       html,
+      // Plain-text alternative: HTML-only mail scores worse with spam filters.
+      text,
     })
 
     if (error) {

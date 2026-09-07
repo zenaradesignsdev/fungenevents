@@ -30,7 +30,19 @@ primitives: `SiteNav`, `SiteFooter`, `Reveal`, `CtaBand`, `CtaButton`, `ArrowLin
 The contact form (`src/app/contact/`) posts to the Resend route at `src/app/api/contact/`
 (react-hook-form + Zod, honeypot, IP rate limiting via `src/lib/rate-limit.ts`). It needs
 `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` set in Vercel — without them the
-route returns a friendly 503 and the form surfaces an error toast.
+route returns a friendly 503 and the form surfaces an error toast. `CONTACT_FROM_EMAIL` must
+sit on a domain verified in Resend, or Resend rejects the send and the route answers 502.
+Vercel only picks up env var changes on the next deploy.
+
+Route guards, in order: same-origin check (403), `Content-Length` cap at 64KB (413), IP rate
+limit of 5 per 10 minutes (429, with `Retry-After`), JSON parse (400), Zod re-validation
+(422), honeypot (silent 200). The rate limiter keys off `x-real-ip` first — `x-forwarded-for`
+is client-settable, so trusting its leftmost entry let one caller rotate a fresh "IP" per
+request. `src/lib/validations/contact.ts` is shared by the client resolver and the route;
+it sanitises by *rejecting* control characters rather than transforming, because a zod
+transform makes input and output types diverge and the react-hook-form resolver cannot
+reconcile them. `budget` and `eventType` are enums matching the UI's own options, so the
+route will not forward arbitrary strings into the studio's inbox.
 
 Known follow-up: 3 high-severity `sharp`/libvips CVEs remain; the fix is a breaking
 `sharp` bump best done via a Next.js upgrade (deferred — the site only processes trusted

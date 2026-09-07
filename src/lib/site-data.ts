@@ -422,7 +422,17 @@ export const HOME_BASE_CITY = 'Scarborough'
  */
 export const SERVICE_AREA_CITIES = SERVICE_AREA_GROUPS.flatMap((group) => group.cities)
 
-export const EVENT_TYPES = ['Birthday', 'Anniversary', 'Wedding', 'Corporate Event', 'Social Event', 'Nonprofit Event']
+// `as const` so the contact schema can derive real literal unions from these
+// rather than widening to `string` — the API route is the only thing standing
+// between a bot and the studio inbox, so it validates against these exact values.
+export const EVENT_TYPES = [
+  'Birthday',
+  'Anniversary',
+  'Wedding',
+  'Corporate Event',
+  'Social Event',
+  'Nonprofit Event',
+] as const
 
 export const BUDGET_RANGES = [
   { value: '', label: 'Select a range' },
@@ -431,4 +441,7 @@ export const BUDGET_RANGES = [
   { value: '7500-15000', label: '$7,500 – $15,000' },
   { value: '15000-plus', label: '$15,000+' },
   { value: 'unsure', label: 'Not sure yet' },
-]
+] as const
+
+/** The only budget values the API will accept — mirrors the select's options. */
+export const BUDGET_VALUES = BUDGET_RANGES.map((range) => range.value)
