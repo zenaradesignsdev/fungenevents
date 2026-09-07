@@ -120,20 +120,115 @@ export async function POST(request: Request) {
     ['Budget range', (data.budget && budgetLabel) || '—'],
   ]
 
-  const html = `
-    <h2 style="font-family:Georgia,serif;color:#1B2A41;">New enquiry: FunGen Events</h2>
-    <table style="font-family:Arial,sans-serif;font-size:14px;color:#333;border-collapse:collapse;">
-      ${rows
-        .map(
-          ([label, value]) =>
-            `<tr><td style="padding:6px 16px 6px 0;color:#777;">${label}</td><td style="padding:6px 0;"><strong>${escapeHtml(value)}</strong></td></tr>`,
-        )
-        .join('')}
-    </table>
-    <p style="font-family:Arial,sans-serif;font-size:14px;color:#333;margin-top:16px;white-space:pre-wrap;">${escapeHtml(
-      data.message || 'No message provided.',
-    )}</p>
-  `
+  // The label column is intentionally NOT white-space:nowrap — with it, the label
+  // set a 151px floor that pushed the whole table to 376px on a 360px phone.
+  // Email HTML is deliberately old-fashioned: nested tables, inline styles, no
+  // flexbox or <style> block. Outlook renders with Word's engine and Gmail strips
+  // <head> styles, so anything more modern degrades badly. Brand palette only:
+  // navy #1B2A41, gold #C9A227, warm white #FAF8F5, charcoal #333. Web fonts are
+  // not reliable in mail, so Georgia and Arial stand in for Bodoni and Archivo,
+  // which are already the fallbacks the site declares.
+  const detailRows = rows
+    .map(
+      ([label, value], i) => `
+        <tr>
+          <td style="padding:${i === 0 ? '0' : '11px'} 18px 11px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#8A8A8A;vertical-align:top;">${label}</td>
+          <td style="padding:${i === 0 ? '0' : '11px'} 0 11px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#333333;vertical-align:top;word-break:break-word;">${escapeHtml(value)}</td>
+        </tr>`,
+    )
+    .join('')
+
+  const messageBlock = data.message
+    ? `
+      <tr>
+        <td style="padding:30px 32px 0 32px;">
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#8A8A8A;padding-bottom:10px;">In their words</div>
+          <div style="border-left:2px solid #C9A227;padding:2px 0 2px 16px;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.7;color:#333333;white-space:pre-wrap;word-break:break-word;">${escapeHtml(data.message)}</div>
+        </td>
+      </tr>`
+    : ''
+
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Without the charset the en-dash in a budget label ("$2,500 – $7,500")
+       arrives as mojibake wherever the client does not assume UTF-8. -->
+  <!-- Declares this as a light-mode design so Apple Mail and Outlook do not
+       auto-invert the navy masthead into something muddy. -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>New enquiry</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F2F2F2;">
+  <!-- Inbox preview line; hidden in the body itself. -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${escapeHtml(
+    `${data.eventType} enquiry from ${data.name}`,
+  )}</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F2F2F2;">
+    <tr>
+      <td align="center" style="padding:28px 12px;">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:#FAF8F5;">
+
+          <!-- Masthead -->
+          <tr>
+            <td style="background-color:#1B2A41;padding:28px 32px;">
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:23px;letter-spacing:3.4px;text-transform:uppercase;color:#FAF8F5;">FunGen</div>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#C9A227;padding-top:7px;">Events &amp; Experiences</div>
+            </td>
+          </tr>
+          <tr><td style="height:3px;background-color:#C9A227;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+          <!-- Heading -->
+          <tr>
+            <td style="padding:34px 32px 0 32px;">
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#C9A227;">New enquiry</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:27px;line-height:1.3;color:#1B2A41;padding-top:12px;">${escapeHtml(
+                data.eventType,
+              )} &middot; ${escapeHtml(data.name)}</div>
+            </td>
+          </tr>
+
+          <!-- Details -->
+          <tr>
+            <td style="padding:26px 32px 0 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${detailRows}</table>
+            </td>
+          </tr>
+
+          <!-- Message: a full table row, or empty when none was written -->
+          ${messageBlock}
+
+          <!-- Reply hint -->
+          <tr>
+            <td style="padding:32px 32px 0 32px;">
+              <div style="border-top:1px solid #E3E0DA;padding-top:20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.7;color:#6B6B6B;word-break:break-word;">
+                Hit reply to answer ${escapeHtml(data.name.split(' ')[0] || 'them')} directly &mdash;
+                this email is already addressed to
+                <a href="mailto:${escapeHtml(data.email)}" style="color:#1B2A41;">${escapeHtml(
+                  data.email,
+                )}</a>.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:22px 32px 30px 32px;">
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.4px;color:#9A9A9A;">
+                Sent from the enquiry form at fungenevents.ca
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
 
   const text = [
     'New enquiry: FunGen Events',

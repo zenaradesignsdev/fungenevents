@@ -113,6 +113,22 @@ export function SiteFooter() {
           </div>
           <span>Event Planning &amp; Experience Design</span>
         </div>
+
+        {/* Studio credit. The whole line sits at /60, not the /45 used by the
+            copyright line above: /45 is 4.22:1 on this ground, under the 4.5:1 AA
+            floor, and there is no reason to add new text below it. /60 is 6.46:1
+            and matches the social links in the same bar. */}
+        <div className="mt-7 font-sans text-[10.5px] font-light uppercase tracking-[0.2em] text-brand-foreground/60">
+          Designed by{' '}
+          <a
+            href="https://zenaradesigns.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-3.5 tracking-[0.2em] text-brand-foreground/60 underline-offset-4 transition-colors duration-300 hover:text-gold hover:underline sm:py-0"
+          >
+            Zenara Designs
+          </a>
+        </div>
       </div>
     </footer>
   )
