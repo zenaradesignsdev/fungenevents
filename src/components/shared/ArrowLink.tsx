@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 type ArrowLinkProps = {
@@ -25,8 +26,8 @@ export function ArrowLink({ href, children, tone = 'dark', className }: ArrowLin
   const inner = (
     <>
       {children}
-      <span aria-hidden="true" className="text-sm transition-transform duration-500 group-hover:translate-x-1">
-        →
+      <span aria-hidden="true" className="inline-flex transition-transform duration-500 group-hover:translate-x-1">
+        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
       </span>
     </>
   )

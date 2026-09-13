@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { m, useReducedMotion } from 'framer-motion'
 import { Image } from '@/components/ui/image'
 import { HERO_META, HERO_HIGHLIGHTS } from '@/lib/site-data'
@@ -85,8 +86,11 @@ export function Hero() {
                 className="group inline-flex items-center gap-4 rounded-full bg-background py-2.5 pl-[30px] pr-2.5 font-sans text-[10.5px] uppercase tracking-[0.26em] text-[#101B2B] shadow-[0_30px_60px_-34px_rgba(0,0,0,.7)] transition-colors duration-700 hover:bg-gold"
               >
                 Check your date
-                <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#101B2B]/10 font-display text-[15px] leading-none transition-transform duration-700 group-hover:translate-x-0.5">
-                  ↗
+                <span
+                  aria-hidden="true"
+                  className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#101B2B]/10 transition-transform duration-700 group-hover:translate-x-0.5"
+                >
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
                 </span>
               </Link>
               <Link
@@ -94,8 +98,11 @@ export function Hero() {
                 className="group relative inline-flex items-center gap-3 border-b border-gold/85 py-2 font-sans text-[10.5px] uppercase tracking-[0.26em] text-brand-foreground/85 transition-colors duration-700 after:absolute after:inset-x-0 after:-top-1 after:-bottom-1 after:content-[''] hover:border-gold hover:text-gold"
               >
                 Recent events{' '}
-                <span aria-hidden="true" className="font-display text-[15px] transition-transform duration-700 group-hover:translate-x-1">
-                  ⟶
+                <span
+                  aria-hidden="true"
+                  className="inline-flex transition-transform duration-700 group-hover:translate-x-1"
+                >
+                  <ArrowRight className="h-[15px] w-[15px]" strokeWidth={1.75} />
                 </span>
               </Link>
             </m.div>

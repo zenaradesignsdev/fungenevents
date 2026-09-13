@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { Image } from '@/components/ui/image'
 import { cn } from '@/lib/cn'
 import { ArrowLink } from '@/components/shared/ArrowLink'
@@ -60,11 +61,12 @@ export function ServicesPreview() {
                     className={cn(
                       // Hidden on the narrowest screens so the title keeps the
                       // full row width.
-                      'hidden whitespace-nowrap font-sans text-[10px] uppercase tracking-[0.24em] transition-colors duration-500 min-[420px]:inline',
+                      'hidden items-center gap-1.5 whitespace-nowrap font-sans text-[10px] uppercase tracking-[0.24em] transition-colors duration-500 min-[420px]:inline-flex',
                       isActive ? 'text-gold' : 'text-brand-foreground/35',
                     )}
                   >
-                    Explore →
+                    Explore
+                    <ArrowRight className="h-3 w-3" strokeWidth={1.75} aria-hidden="true" />
                   </span>
                 </Link>
               )

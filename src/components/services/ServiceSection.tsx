@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { AnimatePresence, m } from 'framer-motion'
 import { Image } from '@/components/ui/image'
 import { cn } from '@/lib/cn'
@@ -159,7 +160,8 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
 
             <Reveal delay={0.22} className="mt-[clamp(30px,4vw,44px)]">
               <CtaButton href="/contact" variant="outline-dark" size="sm">
-                {service.cta} <span className="font-display text-[15px]">⟶</span>
+                {service.cta}
+                <ArrowRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
               </CtaButton>
             </Reveal>
           </div>
